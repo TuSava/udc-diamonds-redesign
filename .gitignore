@@ -3,3 +3,4 @@
 test_*.html
 node_modules/
 video_frames/
+.vercel
