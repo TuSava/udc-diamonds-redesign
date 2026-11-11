@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDC Diamonds — Презентація редизайну фронтенду та відеооглядів 360°</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-charcoal: #121212;
+      --color-deep-slate: #1A1A1A;
+      --color-warm-white: #FAF9F6;
+      --color-ivory: #F5EFEB;
+      --color-champagne: #C8A97E;
+      --color-champagne-light: #E4D5B7;
+      --color-muted: #888888;
+      --color-border: rgba(200, 169, 126, 0.25);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: #0D0D0D;
+      color: #FAF9F6;
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* Screen Deck Controls */
+    .deck-nav-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FAF9F6;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--color-champagne);
+      border-color: var(--color-champagne);
+      color: #121212;
+    }
+
+    .nav-counter {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--color-champagne);
+      font-weight: 500;
+    }
+
+    .nav-action-btn {
+      background: var(--color-champagne);
+      color: #121212;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-action-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Deck Layout */
+    .deck-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0 100px;
+      gap: 40px;
+    }
+
+    /* Individual Slide */
+    .slide {
+      width: 1400px;
+      height: 787.5px; /* 16:9 ratio */
+      background: var(--color-deep-slate);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .slide-light {
+      background: var(--color-warm-white);
+      color: var(--color-charcoal);
+    }
+
+    /* Slide Header */
+    .slide-header {
+      padding: 32px 56px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid rgba(200, 169, 126, 0.2);
+    }
+
+    .slide-light .slide-header {
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .slide-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-champagne);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .slide-light .slide-tag {
+      color: #9E7D4E;
+    }
+
+    .slide-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      line-height: 1.15;
+    }
+
+    .slide-meta {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* Slide Content */
+    .slide-body {
+      flex: 1;
+      padding: 32px 56px;
+      display: flex;
+      gap: 48px;
+      overflow: hidden;
+    }
+
+    /* Slide Footer */
+    .slide-footer {
+      padding: 16px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .slide-light .slide-footer {
+      border-top-color: rgba(0, 0, 0, 0.06);
+      opacity: 0.7;
+    }
+
+    /* Cover Slide Specific */
+    .slide-cover {
+      background: radial-gradient(circle at 75% 50%, rgba(200, 169, 126, 0.15), transparent 60%), #111111;
+      justify-content: space-between;
+      padding: 64px 80px;
+    }
+
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-crest {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      letter-spacing: 6px;
+      color: #FAF9F6;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-champagne);
+      margin-top: 4px;
+    }
+
+    .cover-center {
+      max-width: 860px;
+    }
+
+    .cover-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--color-champagne);
+      font-weight: 600;
+      padding: 6px 14px;
+      background: rgba(200, 169, 126, 0.1);
+      border: 1px solid rgba(200, 169, 126, 0.3);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cover-heading {
+      font-family: var(--font-serif);
+      font-size: 58px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      color: #FFFFFF;
+    }
+
+    .cover-heading span {
+      color: var(--color-champagne);
+      font-style: italic;
+    }
+
+    .cover-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #AAAAAA;
+      font-weight: 300;
+      max-width: 720px;
+    }
+
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+    }
+
+    .cover-client {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.6;
+      color: #888888;
+    }
+
+    .cover-client strong {
+      color: #FAF9F6;
+    }
+
+    /* Grid Layouts inside slides */
+    .col-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+    }
+
+    .col-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .col-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Typography & Elements */
+    .prose-lead {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #C0C0C0;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .slide-light .prose-lead {
+      color: #444444;
+    }
+
+    .highlight-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(200, 169, 126, 0.2);
+      border-radius: 4px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .slide-light .highlight-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .card-num {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--color-champagne);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 11px;
+      line-height: 1.55;
+      color: #999999;
+    }
+
+    .slide-light .card-desc {
+      color: #666666;
+    }
+
+    /* Image Containers */
+    .slide-image-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      background: #000;
+    }
+
+    .slide-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-image-contain img {
+      object-fit: contain;
+      background: #FAF9F6;
+    }
+
+    /* Comparison Table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .compare-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-champagne);
+      color: var(--color-champagne);
+    }
+
+    .compare-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      line-height: 1.4;
+    }
+
+    .slide-light .compare-table td {
+      border-bottom-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Price Badge */
+    .price-pill {
+      display: inline-block;
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--color-champagne);
+      font-weight: 500;
+    }
+
+    .slide-light .price-pill {
+      color: #9E7D4E;
+    }
+
+    /* Video Embed Mockup */
+    .video-mockup {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(200, 169, 126, 0.3);
+    }
+
+    .video-mockup video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(18, 18, 18, 0.85);
+      border: 1px solid var(--color-champagne);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #FAF9F6;
+      z-index: 2;
+    }
+
+    .video-sub-pill {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: rgba(18, 18, 18, 0.85);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      color: var(--color-champagne);
+      letter-spacing: 1px;
+      font-weight: 500;
+      z-index: 2;
+    }
+
+    /* Live link pill */
+    .live-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200, 169, 126, 0.15);
+      border: 1px solid var(--color-champagne);
+      color: var(--color-champagne);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .live-link-pill:hover {
+      background: var(--color-champagne);
+      color: #121212;
+    }
+
+    /* Print Styles (Strict A4 Landscape / 16:9 PDF export) */
+    @page {
+      size: 297mm 210mm; /* A4 Landscape */
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #000000;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .deck-nav-bar {
+        display: none !important;
+      }
+
+      .deck-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+
+      .slide {
+        width: 297mm !important;
+        height: 210mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+
+      .video-mockup video {
+        display: none !important;
+      }
+
+      .video-mockup img.print-poster {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+    }
+
+    .video-mockup img.print-poster {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING DECK CONTROLS (Hidden during PDF print) -->
+  <div class="deck-nav-bar">
+    <button class="nav-btn" onclick="prevSlide()">← Назад</button>
+    <div class="nav-counter" id="navCounter">1 / 9</div>
+    <button class="nav-btn" onclick="nextSlide()">Далі →</button>
+    <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.2);"></div>
+    <a href="https://tusava.github.io/udc-diamonds-redesign/" target="_blank" class="nav-action-btn">
+      🌐 Відкрити сайт
+    </a>
+    <button class="nav-btn" onclick="window.print()">
+      📄 Експорт в PDF
+    </button>
+  </div>
+
+  <div class="deck-container">
+
+    <!-- SLIDE 1: COVER -->
+    <section class="slide slide-cover" id="slide-1">
+      <div class="cover-top">
+        <div>
+          <div class="brand-crest">UDC DIAMONDS</div>
+          <div class="brand-sub">Київ · Haute Joaillerie · З 2001 року</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-champagne);">Комерційна Стратегія</div>
+          <div style="font-size: 10px; opacity: 0.5; margin-top: 4px;">Листопад 2026</div>
+        </div>
+      </div>
+
+      <div class="cover-center">
+        <span class="cover-eyebrow">Digital Luxury Transformation</span>
+        <h1 class="cover-heading">
+          Цифровий флагман та<br>
+          <span>відеоогляди 360°</span> по фото
+        </h1>
+        <p class="cover-desc">
+          Комплексний редизайн фронтенду UDC Diamonds та виробництво кінематографічного відеоконтенту 360° на основі існуючих фотографій виробів (без виїзних зйомок).
+        </p>
+      </div>
+
+      <div class="cover-bottom">
+        <div class="cover-client">
+          Для: <strong>Власника та Керівництва UDC Diamonds</strong><br>
+          Бренд: <strong>Український Діамантовий Центр</strong>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; color: var(--color-champagne); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">
+            Презентація та концепція запуску
+          </div>
+          <div style="font-size: 10px; opacity: 0.5; margin-top: 4px;">Слайд 01 / 09</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: THE PROBLEM & OPPORTUNITY -->
+    <section class="slide" id="slide-2">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">01. Проблема та аналіз вітрини</div>
+          <h2 class="slide-title">Чому старий сайт втрачає покупців діамантів</h2>
+        </div>
+        <div class="slide-meta">Діагностика бар'єрів</div>
+      </div>
+
+      <div class="slide-body">
+        <div style="flex: 1.1; display: flex; flex-direction: column; justify-content: space-between;">
+          <p class="prose-lead">
+            Діаманти купують емоціями. У чеку від <strong>100 000 до 400 000 ₴</strong> клієнт обирає не вагу металу, а відчуття статусу, довіру до бренду та неповторну гру світла в гранях каменю.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="highlight-card">
+              <div class="card-num">01</div>
+              <div class="card-title">Пласке 2D-фото приховує головне</div>
+              <div class="card-desc">Статичне фото не здатне передати сцинтиляцію, дисперсію та "вогонь" діаманта. Покупець сумнівається і відкладає рішення.</div>
+            </div>
+
+            <div class="highlight-card">
+              <div class="card-num">02</div>
+              <div class="card-title">Дисконтний шум знецінює бренд</div>
+              <div class="card-desc">Банери "-30%" та агресивні знижкові плашки створюють враження мас-маркету і вбивають преміальний статус ювелірного дому з 25-річною історією.</div>
+            </div>
+
+            <div class="highlight-card">
+              <div class="card-num">03</div>
+              <div class="card-title">Спроба продати коштовності в "Кошик"</div>
+              <div class="card-desc">Люди не купують каблучки за $5,000 кнопкою "Купити онлайн". Мета цифрової вітрини — залучити клієнта на примірку в салон.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 0.9; display: flex; flex-direction: column; gap: 16px;">
+          <div class="slide-image-box" style="height: 65%;">
+            <img src="assets/product-fancy-yellow.jpg" alt="Каблучка UDC Diamonds" style="object-fit: contain; background: #161616; padding: 20px;">
+          </div>
+          <div class="highlight-card" style="background: rgba(200, 169, 126, 0.08); border-color: var(--color-champagne);">
+            <div style="font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-champagne); font-weight: 600; margin-bottom: 6px;">Фундамент авторитету UDC</div>
+            <div style="font-size: 11px; line-height: 1.5; color: #CCCCCC;">
+              Власне ательє в Києві з 2001 року · Прямий імпорт діамантів з біржі Рамат-Ган (Ізраїль) · 100% сертифікація GIA · 5 салонів у топових ТРЦ Києва.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>UDC Diamonds · Haute Joaillerie</span>
+        <span>Слайд 02 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: NEW FRONTEND BENCHMARK (QUIET LUXURY) -->
+    <section class="slide slide-light" id="slide-3">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">02. Архітектура редизайну</div>
+          <h2 class="slide-title">Новий цифровий флагман світового рівня</h2>
+        </div>
+        <div class="slide-meta">Graff & Cartier Benchmark</div>
+      </div>
+
+      <div class="slide-body">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <p class="prose-lead">
+              Повна перебудова сайту в естетиці <strong>Quiet Luxury</strong>: чиста вітрина без нашарування тексту на фотографії (Zero-Overlap), шляхетна палітра Warm White (#FAF9F6) та Ivory Gold, центральний історичний логотип UDC з 2001 року.
+            </p>
+
+            <table class="compare-table" style="margin-top: 16px;">
+              <thead>
+                <tr>
+                  <th>Старий сайт UDC</th>
+                  <th>Новий цифровий флагман</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Мас-маркет каталог з дисконтом "-30%"</td>
+                  <td><strong>Едиторіал-вітрина рівня Graff та Cartier</strong></td>
+                </tr>
+                <tr>
+                  <td>Текст накладається на фотографії</td>
+                  <td><strong>Zero-Overlap архітектура та чистий простір</strong></td>
+                </tr>
+                <tr>
+                  <td>Кнопка "Купити в кошик" (98% відмов)</td>
+                  <td><strong>Консьєрж-запис на примірку в 5 салонів Києва</strong></td>
+                </tr>
+                <tr>
+                  <td>Втрата мобільних користувачів</td>
+                  <td><strong>Адаптація за стандартом Apple Human Interface</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <a href="https://tusava.github.io/udc-diamonds-redesign/" target="_blank" class="live-link-pill">
+              <span>▶ Переглянути живий сайт</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="flex: 1.1; height: 100%;">
+          <div class="slide-image-box" style="box-shadow: 0 16px 36px rgba(0,0,0,0.12); border-color: rgba(0,0,0,0.1);">
+            <img src="figma_exports/hero_desktop_1440.png" alt="Desktop Redesign Preview">
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Desktop 1440px · Едиторіал-вітрина</span>
+        <span>Слайд 03 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: MOBILE CONCIERGE EXPERIENCE -->
+    <section class="slide" id="slide-4">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">03. Мобільна екосистема</div>
+          <h2 class="slide-title">Мобільний консьєрж-сервіс (Apple HIG)</h2>
+        </div>
+        <div class="slide-meta">Mobile First · 390px</div>
+      </div>
+
+      <div class="slide-body">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <p class="prose-lead">
+              Більше <strong>78% замовлень та переглядів</strong> у ювелірному секторі здійснюються з iPhone. Ми створили мобільний інтерфейс, що відчувається як нативний додаток преміум-класу.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+              <div class="highlight-card">
+                <div class="card-title">Повноекранне меню-шторка (Drawer)</div>
+                <div class="card-desc">Матове скло з розмиттям 24px (Frosted Glass), швидка навігація по категоріях та прямий зв'язок з консьєржем бренду.</div>
+              </div>
+
+              <div class="highlight-card">
+                <div class="card-title">Плаваючий стікі-бар запису</div>
+                <div class="card-desc">Завжди під рукою: миттєвий дзвінок на <code>0 800 330 740</code> та кнопка швидкого бронювання примірки в салоні з урахуванням iOS Safe Area.</div>
+              </div>
+
+              <div class="highlight-card">
+                <div class="card-title">Тач-таргети 44×44px та свайпи</div>
+                <div class="card-desc">Повна підтримка пальцевих жестів, плавні слайдери колекцій та відсутність мікроскопічних кнопок.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 1.1; display: flex; gap: 20px; height: 100%; justify-content: center;">
+          <div style="width: 250px; height: 100%; border-radius: 12px; overflow: hidden; border: 2px solid rgba(200, 169, 126, 0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.5);">
+            <img src="figma_exports/10_udc_stage3_mobile_drawer_390.png" alt="Mobile Drawer Menu" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 250px; height: 100%; border-radius: 12px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 16px 40px rgba(0,0,0,0.5);">
+            <img src="figma_exports/09A_mobile_top_catalog.png" alt="Mobile Catalog" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>iOS & Android · Apple Human Interface Guidelines</span>
+        <span>Слайд 04 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 360 VIDEOS FROM PHOTOS (NO SHOOTING) -->
+    <section class="slide" id="slide-5">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">04. Додаткова послуга</div>
+          <h2 class="slide-title">Відеоогляди 360° на основі звичайних фото</h2>
+        </div>
+        <div class="slide-meta">Революція у створенні контенту</div>
+      </div>
+
+      <div class="slide-body">
+        <div style="flex: 1.1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: inline-block; background: rgba(200, 169, 126, 0.15); border: 1px solid var(--color-champagne); color: var(--color-champagne); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">
+              ⭐ Головна перевага: Вам НЕ потрібна фотозйомка!
+            </div>
+
+            <p class="prose-lead">
+              Вам не потрібно організовувати виїзні зйомки, наймати охорону, ризикувати збереженням прикрас на сотні тисяч доларів чи відривати вироби з вітрин бутиків.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
+              <div class="highlight-card">
+                <div class="card-title">1. Ви надаєте звичайні фотографії</div>
+                <div class="card-desc">Підходять будь-які наявні фото виробів із вашого каталогу чи архіву.</div>
+              </div>
+
+              <div class="highlight-card">
+                <div class="card-title">2. Ми генеруємо кінематографічне відео 360°</div>
+                <div class="card-desc">Фізично точний прорахунок світла, спалахи граней діаманта, переливи золота 750° проби та розмите боке ювелірного ательє.</div>
+              </div>
+
+              <div class="highlight-card">
+                <div class="card-title">3. Два формати на виході</div>
+                <div class="card-desc">Легкий WebM/MP4 (до 2 МБ) для автостарту на сайті + вертикальний Reels/Stories 9:16 для реклами в Instagram.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 0.9; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 100%;">
+          <!-- Video 1 -->
+          <div class="video-mockup">
+            <span class="video-badge">Halo Ring 360°</span>
+            <video autoplay loop muted playsinline>
+              <source src="assets/video-halo-ring-360.mp4" type="video/mp4">
+            </video>
+            <img src="assets/video-preview-halo.png" class="print-poster" alt="Halo Ring 360">
+            <span class="video-sub-pill">Згенеровано по фото</span>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="video-mockup">
+            <span class="video-badge">Solitaire 360°</span>
+            <video autoplay loop muted playsinline>
+              <source src="assets/video-solitaire-ring-360.mp4" type="video/mp4">
+            </video>
+            <img src="assets/video-preview-solitaire.png" class="print-poster" alt="Solitaire Ring 360">
+            <span class="video-sub-pill">Згенеровано по фото</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>CGI & AI Video Technology · Жодних логістичних ризиків</span>
+        <span>Слайд 05 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: 360 VIDEO PRICING ($25/VIDEO) -->
+    <section class="slide slide-light" id="slide-6">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">05. Прайс на відеоконтент</div>
+          <h2 class="slide-title">Фіксована ціна: всього $25 за одне готове відео</h2>
+        </div>
+        <div class="slide-meta">Прозорість та відсутність прихованих витрат</div>
+      </div>
+
+      <div class="slide-body" style="flex-direction: column; justify-content: space-between;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.08); padding-bottom: 20px;">
+          <div>
+            <div style="font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Вартість за одиницю контенту:</div>
+            <div class="price-pill">$25 / одне готове відео 360°</div>
+          </div>
+          <div style="max-width: 600px; font-size: 12px; line-height: 1.6; color: #555;">
+            Жодних оплат за оренду студії, трансфер чи освітлювачів. Ви сплачуєте виключно за готовий результат: плавне відео високої чіткості для сайту + Instagram Reels.
+          </div>
+        </div>
+
+        <div class="col-4" style="height: auto; margin-top: 10px;">
+          <div class="highlight-card" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 8px;">Тестовий старт</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; color: #121212; margin-bottom: 8px;">$250</div>
+            <div style="font-size: 12px; font-weight: 600; color: #9E7D4E; margin-bottom: 12px;">10 виробів</div>
+            <div style="font-size: 11px; color: #666; line-height: 1.4;">10 відео 360° для карток сайту + 10 адаптованих Reels</div>
+          </div>
+
+          <div class="highlight-card" style="text-align: center; padding: 24px 16px; border: 2px solid #9E7D4E; background: rgba(200, 169, 126, 0.08);">
+            <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #9E7D4E; font-weight: 700; margin-bottom: 8px;">★ Топ-20 флагманів</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; color: #121212; margin-bottom: 8px;">$500</div>
+            <div style="font-size: 12px; font-weight: 600; color: #9E7D4E; margin-bottom: 12px;">20 виробів</div>
+            <div style="font-size: 11px; color: #666; line-height: 1.4;">20 відео 360° для сайту + 20 Reels + 2 заставки для Hero</div>
+          </div>
+
+          <div class="highlight-card" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 8px;">Сезонна колекція</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; color: #121212; margin-bottom: 8px;">$1,250</div>
+            <div style="font-size: 12px; font-weight: 600; color: #9E7D4E; margin-bottom: 12px;">50 виробів</div>
+            <div style="font-size: 11px; color: #666; line-height: 1.4;">50 відео 360° для каталогу + 50 Reels для таргетованої реклами</div>
+          </div>
+
+          <div class="highlight-card" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 8px;">Великий каталог</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; color: #121212; margin-bottom: 8px;">$2,500</div>
+            <div style="font-size: 12px; font-weight: 600; color: #9E7D4E; margin-bottom: 12px;">100 виробів</div>
+            <div style="font-size: 11px; color: #666; line-height: 1.4;">Повне оцифрування флагманських каблучок, сережок та браслетів UDC</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); border-radius: 4px; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-size: 11px; color: #666;">
+            ⏱ <strong>Термін виготовлення:</strong> партія з 10–20 відео передається за 3–5 робочих днів після отримання фотографій.
+          </div>
+          <div style="font-size: 11px; color: #9E7D4E; font-weight: 600;">
+            Два співвідношення сторін: 1:1 для сайту + 9:16 для Instagram
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>$25 за одиницю · Включно з сайтом та соціальними мережами</span>
+        <span>Слайд 06 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: PACKAGES & INVESTMENT MATRIX -->
+    <section class="slide" id="slide-7">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">06. Пакети запуску</div>
+          <h2 class="slide-title">Цінова матриця співпраці</h2>
+        </div>
+        <div class="slide-meta">Гнучкі формати співпраці</div>
+      </div>
+
+      <div class="slide-body">
+        <div class="col-3">
+          <!-- Option A -->
+          <div class="highlight-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 8px;">Варіант А</div>
+              <h3 style="font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: #FFF; margin-bottom: 12px;">Лише Фронтенд</h3>
+              <p style="font-size: 12px; line-height: 1.5; color: #AAA; margin-bottom: 20px;">
+                Повний редизайн та верстка сайту під ключ.
+              </p>
+              <ul style="font-size: 11px; line-height: 1.8; color: #CCC; padding-left: 18px; margin-bottom: 24px;">
+                <li>Головна сторінка (1440px / 768px / 390px)</li>
+                <li>Мобільне консьєрж-меню & стікі-бар</li>
+                <li>Карусель колекцій з тач-свайпами</li>
+                <li>Figma UI Kit та дизайн-система</li>
+                <li>Термін реалізації: 4–5 тижні</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #888;">Інвестиція:</div>
+              <div class="price-pill">$2,800</div>
+            </div>
+          </div>
+
+          <!-- Option B -->
+          <div class="highlight-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 2px solid var(--color-champagne); background: rgba(200, 169, 126, 0.08); position: relative;">
+            <div style="position: absolute; top: -11px; right: 20px; background: var(--color-champagne); color: #121212; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 3px 10px; border-radius: 10px;">
+              Рекомендовано
+            </div>
+            <div>
+              <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-champagne); margin-bottom: 8px;">Варіант Б</div>
+              <h3 style="font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: #FFF; margin-bottom: 12px;">Фронтенд + Топ-20 Відео 360°</h3>
+              <p style="font-size: 12px; line-height: 1.5; color: #DDD; margin-bottom: 20px;">
+                Максимальний візуальний ефект та конверсія в бутики.
+              </p>
+              <ul style="font-size: 11px; line-height: 1.8; color: #EEE; padding-left: 18px; margin-bottom: 24px;">
+                <li>Повний редизайн фронтенду ($2,800)</li>
+                <li><strong>20 відеооглядів 360° по фото ($500)</strong></li>
+                <li>20 адаптованих відео для Instagram Reels</li>
+                <li>Інтерактивне модальне вікно перегляду</li>
+                <li>Знижка на комплексний запуск: -$200</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-champagne);">Спеціальна ціна в комплекті:</div>
+              <div class="price-pill">$3,100</div>
+            </div>
+          </div>
+
+          <!-- Option C -->
+          <div class="highlight-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 8px;">Варіант В</div>
+              <h3 style="font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: #FFF; margin-bottom: 12px;">Флагманський Дім + 50 Відео</h3>
+              <p style="font-size: 12px; line-height: 1.5; color: #AAA; margin-bottom: 20px;">
+                Повний масив контенту для всіх ключових лінійок.
+              </p>
+              <ul style="font-size: 11px; line-height: 1.8; color: #CCC; padding-left: 18px; margin-bottom: 24px;">
+                <li>Повний редизайн фронтенду ($2,800)</li>
+                <li><strong>50 відеооглядів 360° по фото ($1,250)</strong></li>
+                <li>50 Reels для рекламних кампаній</li>
+                <li>Відео-лупи для головних колекцій</li>
+                <li>Знижка на комплексний запуск: -$450</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #888;">Спеціальна ціна в комплекті:</div>
+              <div class="price-pill">$3,600</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Поетапна безпечна оплата: 30% Старт · 40% Затвердження · 30% Фінал</span>
+        <span>Слайд 07 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ROI & RETURN ON INVESTMENT -->
+    <section class="slide" id="slide-8">
+      <div class="slide-header">
+        <div>
+          <div class="slide-tag">07. Економіка та окупність</div>
+          <h2 class="slide-title">Проста арифметика окупності (ROI)</h2>
+        </div>
+        <div class="slide-meta">High-Ticket Економіка</div>
+      </div>
+
+      <div class="slide-body">
+        <div style="flex: 1.1; display: flex; flex-direction: column; justify-content: space-between;">
+          <p class="prose-lead">
+            У сегменті Haute Joaillerie окупність цифрових інструментів рахується не тисячами дрібних замовлень, а одиничними продажами великих солітерів.
+          </p>
+
+          <div class="highlight-card" style="background: rgba(200, 169, 126, 0.1); border-color: var(--color-champagne); padding: 28px;">
+            <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-champagne); font-weight: 700; margin-bottom: 10px;">
+              Формула повернення інвестицій:
+            </div>
+            <div style="font-family: var(--font-serif); font-size: 26px; line-height: 1.3; color: #FFF; margin-bottom: 14px;">
+              Середній чек на солітер UDC Diamonds з каменем 1.00+ ct складає <span style="color: var(--color-champagne);">150 000 ₴ ($3,700)</span>.
+            </div>
+            <div style="font-size: 13px; line-height: 1.6; color: #DDD;">
+              Залучення всього <strong>2-х додаткових клієнтів</strong> на примірку в салон через оновлений сайт та кінематографічні відеоогляди 360° повністю окупає всі витрати на комплексний запуск ($3,100).
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 20px;">
+            <div style="flex: 1; border-left: 2px solid var(--color-champagne); padding-left: 14px;">
+              <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #888;">Конверсія в салоні</div>
+              <div style="font-size: 20px; font-weight: 600; color: #FFF; margin-top: 4px;">45% – 60%</div>
+              <div style="font-size: 10px; color: #AAA; margin-top: 2px;">клієнтів, що прийшли на примірку, здійснюють покупку</div>
+            </div>
+            <div style="flex: 1; border-left: 2px solid var(--color-champagne); padding-left: 14px;">
+              <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #888;">Всі наступні клієнти</div>
+              <div style="font-size: 20px; font-weight: 600; color: var(--color-champagne); margin-top: 4px;">100% прибуток</div>
+              <div style="font-size: 10px; color: #AAA; margin-top: 2px;">чиста вигода бренду на роки вперед</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 0.9; display: flex; flex-direction: column; justify-content: center; gap: 14px;">
+          <div class="slide-image-box" style="height: 240px;">
+            <img src="assets/product-ring-diamond.jpg" alt="Solitaire Ring" style="object-fit: contain; background: #161616; padding: 20px;">
+          </div>
+          <div style="font-size: 11px; text-align: center; color: #888;">
+            Класичний солітер Pavé Trilogy · Артикул Ф36321 · 323 807 ₴ ($8,000)
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>High-Ticket Економіка · Окупність з 2-х угод</span>
+        <span>Слайд 08 / 09</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: ACTION & NEXT STEPS -->
+    <section class="slide slide-cover" id="slide-9" style="justify-content: space-between;">
+      <div class="cover-top">
+        <div>
+          <div class="brand-crest">UDC DIAMONDS</div>
+          <div class="brand-sub">Київ · Haute Joaillerie · З 2001 року</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-champagne);">Наступні кроки</div>
+          <div style="font-size: 10px; opacity: 0.5; margin-top: 4px;">Готовність до старту</div>
+        </div>
+      </div>
+
+      <div class="cover-center">
+        <span class="cover-eyebrow">Живий доказ та готовність до запуску</span>
+        <h2 class="cover-heading" style="font-size: 46px;">
+          Сайт уже працює.<br>
+          <span>Давайте зробимо його вашим флагманом.</span>
+        </h2>
+        
+        <div style="display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap;">
+          <a href="https://tusava.github.io/udc-diamonds-redesign/" target="_blank" class="nav-action-btn" style="padding: 12px 28px; font-size: 12px;">
+            🌐 Відкрити живий публічний прототип
+          </a>
+          <a href="https://tusava.github.io/udc-diamonds-redesign/assets/video-halo-ring-360.mp4" target="_blank" class="live-link-pill" style="padding: 12px 24px;">
+            ▶ Приклад відео 360° Halo Ring
+          </a>
+          <a href="https://tusava.github.io/udc-diamonds-redesign/assets/video-solitaire-ring-360.mp4" target="_blank" class="live-link-pill" style="padding: 12px 24px;">
+            ▶ Приклад відео 360° Solitaire
+          </a>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <div class="cover-client">
+          Готові до демонстрації на живому екрані або зустрічі в ательє:<br>
+          <strong>м. Київ, вул. Саксаганського, 119</strong>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; color: var(--color-champagne); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">
+            Дякуємо за увагу
+          </div>
+          <div style="font-size: 10px; opacity: 0.5; margin-top: 4px;">Слайд 09 / 09</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 9;
+
+    function updateNav() {
+      document.getElementById('navCounter').textContent = `${currentSlide} / ${totalSlides}`;
+    }
+
+    function goToSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+      const target = document.getElementById(`slide-${n}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+      updateNav();
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    // Keyboard navigation (← and →)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+
+    // Intersection Observer to update slide counter while scrolling
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const num = parseInt(id.replace('slide-', ''));
+          if (!isNaN(num)) {
+            currentSlide = num;
+            updateNav();
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
