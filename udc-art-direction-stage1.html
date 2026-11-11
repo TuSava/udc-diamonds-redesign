@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDC Diamonds — High Jewelry Digital Flagship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Refined Luxury Palette */
+      --color-warm-white: #FAF9F6;
+      --color-ivory: #F1EEE8;
+      --color-champagne: #D8CBB8;
+      --color-soft-grey: #B8B5AF;
+      --color-charcoal: #292929;
+      --color-black: #111111;
+      --color-border: rgba(41, 41, 41, 0.08);
+      --color-gold-accent: #9c7b45;
+      --color-gold-hover: #b89758;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-numbers: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--color-warm-white);
+      color: var(--color-charcoal);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ----------------------------------------------------
+       STAGE 1 CONTROLLER / REVIEW NOTIFICATION
+       ---------------------------------------------------- */
+    .stage-banner {
+      background-color: var(--color-black);
+      color: var(--color-champagne);
+      padding: 8px 32px;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(216, 203, 184, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1001;
+    }
+
+    .stage-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stage-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .stage-controls {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 10px;
+    }
+
+    /* ----------------------------------------------------
+       TOP UTILITY BAR (AUTHENTIC UDC DATA)
+       ---------------------------------------------------- */
+    .utility-bar {
+      border-bottom: 1px solid var(--color-border);
+      padding: 8px 48px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--color-soft-grey);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--color-warm-white);
+    }
+
+    .utility-bar a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .utility-bar a:hover {
+      color: var(--color-charcoal);
+    }
+
+    .utility-left, .utility-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .lang-switcher span {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lang-switcher span.active {
+      color: var(--color-charcoal);
+      font-weight: 500;
+    }
+
+    /* ----------------------------------------------------
+       TWO-TIER LUXURY SITE HEADER (GRAFF / CARTIER STYLE)
+       ---------------------------------------------------- */
+    .site-header {
+      background-color: rgba(250, 249, 246, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 33px;
+      z-index: 999;
+    }
+
+    /* Tier 1: Grand Brand Crown & Utility Icons */
+    .header-top-tier {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 48px 18px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-top-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-vip-tag {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--color-gold-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid rgba(156, 123, 69, 0.28);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .header-vip-tag:hover {
+      background: rgba(156, 123, 69, 0.08);
+      border-color: var(--color-gold-accent);
+    }
+
+    .header-vip-tag::before {
+      content: '◆';
+      font-size: 6px;
+    }
+
+    /* Centered Grand Brand Logo */
+    .brand-logo-container {
+      text-align: center;
+    }
+
+    .brand-logo-title {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      letter-spacing: 7px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--color-black);
+      line-height: 1;
+      text-decoration: none;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .brand-logo-title:hover {
+      opacity: 0.85;
+    }
+
+    .brand-logo-subtitle {
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--color-soft-grey);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* Top Right Utility Icons Suite (All authentic icons preserved) */
+    .header-icons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+    }
+
+    .icon-link {
+      color: var(--color-charcoal);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+      position: relative;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .icon-link:hover {
+      color: var(--color-gold-hover);
+    }
+
+    .icon-badge {
+      font-family: var(--font-numbers);
+      font-size: 10px;
+      color: var(--color-charcoal);
+      font-weight: 500;
+    }
+
+    /* Tier 2: Centered Category Navigation Bar */
+    .header-nav-tier {
+      border-top: 1px solid rgba(41, 41, 41, 0.06);
+      padding: 12px 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-item a {
+      text-decoration: none;
+      color: var(--color-charcoal);
+      font-size: 11px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.25s ease;
+    }
+
+    .nav-item a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background-color: var(--color-black);
+      transition: all 0.25s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-item a:hover::after {
+      width: 100%;
+    }
+
+    .nav-item a:hover {
+      color: var(--color-black);
+    }
+
+    /* ----------------------------------------------------
+       6.2 CINEMATIC EDITORIAL HERO CAROUSEL
+       ---------------------------------------------------- */
+    .hero-slider-section {
+      position: relative;
+      min-height: 720px;
+      height: 800px;
+      background-color: var(--color-ivory);
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .hero-slider-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      pointer-events: none;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    .hero-container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      align-items: center;
+      gap: 60px;
+      height: 100%;
+    }
+
+    .hero-editorial-content {
+      max-width: 540px;
+      z-index: 3;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-soft-grey);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background-color: var(--color-champagne);
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 5vw, 68px);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+      color: var(--color-black);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-gold-accent);
+    }
+
+    .hero-description {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555555;
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 460px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-editorial-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      background-color: var(--color-black);
+      color: var(--color-warm-white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      border: 1px solid var(--color-black);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-editorial-primary:hover {
+      background-color: transparent;
+      color: var(--color-black);
+    }
+
+    .btn-editorial-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
+      background-color: transparent;
+      color: var(--color-charcoal);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-bottom: 1px solid var(--color-charcoal);
+      transition: all 0.25s ease;
+    }
+
+    .btn-editorial-secondary:hover {
+      color: var(--color-gold-hover);
+      border-bottom-color: var(--color-gold-hover);
+    }
+
+    .hero-visual-stage {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-frame {
+      width: 100%;
+      max-height: 85%;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-frame img {
+      max-width: 88%;
+      max-height: 88%;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.08));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-image-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-spec-tag {
+      position: absolute;
+      bottom: 40px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border: 1px solid var(--color-border);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-charcoal);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-spec-tag strong {
+      font-family: var(--font-numbers);
+      font-size: 12px;
+      color: var(--color-black);
+    }
+
+    /* Carousel Nav Arrows */
+    .slider-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--color-charcoal);
+      transition: all 0.25s ease;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .slider-arrow-btn:hover {
+      background: var(--color-black);
+      color: var(--color-warm-white);
+      border-color: var(--color-black);
+    }
+
+    .slider-arrow-prev {
+      left: 24px;
+    }
+
+    .slider-arrow-next {
+      right: 24px;
+    }
+
+    /* Bottom Slider Indicator Tabs */
+    .slider-indicators {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .slider-indicator-item {
+      font-family: var(--font-numbers);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--color-soft-grey);
+      cursor: pointer;
+      transition: color 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .slider-indicator-item.active {
+      color: var(--color-black);
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .slider-indicator-item.active::after {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background-color: var(--color-black);
+    }
+
+    /* ----------------------------------------------------
+       CURATED VALUE PILLARS (AUTHENTIC UDC TRUST)
+       ---------------------------------------------------- */
+    .pillars-section {
+      padding: 48px 64px;
+      border-bottom: 1px solid var(--color-border);
+      background-color: var(--color-warm-white);
+    }
+
+    .pillars-grid {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .pillar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 20px;
+      border-right: 1px solid var(--color-border);
+    }
+
+    .pillar-item:last-child {
+      border-right: none;
+    }
+
+    .pillar-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-soft-grey);
+    }
+
+    .pillar-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--color-black);
+      font-weight: 400;
+    }
+
+    .pillar-desc {
+      font-size: 12px;
+      color: #777777;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ----------------------------------------------------
+       6.3 EDITORIAL COLLECTIONS GALLERY
+       ---------------------------------------------------- */
+    .gallery-section {
+      padding: 100px 64px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .section-header-editorial {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px auto;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-soft-grey);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--color-black);
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: #666666;
+      margin-top: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .collections-grid-editorial {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .collection-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .collection-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-color: var(--color-ivory);
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .collection-image-wrapper img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .collection-card:hover .collection-image-wrapper {
+      border-color: var(--color-champagne);
+    }
+
+    .collection-card:hover .collection-image-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .collection-card-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--color-black);
+      margin-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .collection-card:hover .collection-card-title {
+      color: var(--color-gold-accent);
+    }
+
+    .collection-card-meta {
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--color-soft-grey);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .collection-arrow {
+      font-size: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .collection-card:hover .collection-arrow {
+      transform: translateX(4px);
+      color: var(--color-black);
+    }
+
+    /* ----------------------------------------------------
+       6.4 FLAGSHIP PRODUCT SPOTLIGHT (PDP HOOK)
+       ---------------------------------------------------- */
+    .spotlight-section {
+      background-color: #f7f5f0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 100px 64px;
+    }
+
+    .spotlight-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .spotlight-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: var(--color-warm-white);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .spotlight-gallery img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.07));
+    }
+
+    .spotlight-badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      background: var(--color-black);
+      color: var(--color-warm-white);
+    }
+
+    .spotlight-content {
+      max-width: 500px;
+    }
+
+    .spotlight-sku {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--color-soft-grey);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .spotlight-title {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-black);
+      margin-bottom: 16px;
+    }
+
+    .spotlight-price {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--color-gold-accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .spotlight-price-usd {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--color-soft-grey);
+    }
+
+    .spotlight-features {
+      list-style: none;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+      color: #555555;
+    }
+
+    .spotlight-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spotlight-features li::before {
+      content: '◆';
+      font-size: 8px;
+      color: var(--color-champagne);
+    }
+
+    /* ----------------------------------------------------
+       AUTHENTIC UDC FOOTER
+       ---------------------------------------------------- */
+    .site-footer {
+      background-color: var(--color-black);
+      color: #999999;
+      padding: 80px 64px 40px 64px;
+      font-size: 12px;
+    }
+
+    .footer-top-grid {
+      max-width: 1440px;
+      margin: 0 auto 60px auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+      gap: 60px;
+    }
+
+    .footer-brand-col h4 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      letter-spacing: 4px;
+      color: var(--color-warm-white);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .footer-col-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-warm-white);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-list a {
+      color: #999999;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--color-warm-white);
+    }
+
+    .footer-bottom {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STAGE 1 REVIEW CONTROLLER -->
+  <div class="stage-banner">
+    <div class="stage-badge">
+      <span class="stage-dot"></span>
+      <span>UDC DIAMONDS — ETАП 1: ОНОВЛЕНИЙ ХЕДЕР ТА КАРУСЕЛЬ КОЛЕКЦІЙ</span>
+    </div>
+    <div class="stage-controls">
+      <span>КНОПКА ПОРІВНЯННЯ ТОВАРІВ ДОДАНА · НАЗВА БРЕНДУ КРУПНІША · МЕНЮ ПОСЕРЕДИНІ</span>
+    </div>
+  </div>
+
+  <!-- AUTHENTIC UTILITY BAR -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <a href="tel:0800330740">Гаряча лінія: <strong>0 800 330 740</strong></a>
+      <a href="https://udcdiamonds.com.ua/magazini">Бутики у Києві (5 локацій)</a>
+      <a href="https://udcdiamonds.com.ua/garantiya-yakosti">Сертифікація GIA</a>
+    </div>
+    <div class="utility-right">
+      <a href="https://udcdiamonds.com.ua/oplata-i-dostavka">Доставка & Оплата</a>
+      <a href="https://udcdiamonds.com.ua/faq">Питання-Відповідь</a>
+      <div class="lang-switcher">
+        <span class="active">УКР</span> / <span>РУС</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.1 TWO-TIER LUXURY HEADER -->
+  <header class="site-header">
+    
+    <!-- Tier 1: Grand Brand Crown & Utility Icons -->
+    <div class="header-top-tier">
+      <div class="header-top-left">
+        <a href="https://udcdiamonds.com.ua/magazini" class="header-vip-tag">
+          Запис на примірку в бутик
+        </a>
+      </div>
+
+      <!-- Majestic Centered Logo -->
+      <div class="brand-logo-container">
+        <a href="#" class="brand-logo-title">UDC DIAMONDS</a>
+        <div class="brand-logo-subtitle">Київ · Haute Joaillerie · З 2001 року</div>
+      </div>
+
+      <!-- Utility Icons (Including Compare Products) -->
+      <div class="header-icons">
+        <a href="https://udcdiamonds.com.ua/#" class="icon-link">Пошук</a>
+        <a href="https://udcdiamonds.com.ua/#" class="icon-link">Увійти</a>
+        <!-- The requested Comparison button restored from original site -->
+        <a href="https://udcdiamonds.com.ua/compare-products" class="icon-link" title="Порівняння товарів">
+          Порівняння <span class="icon-badge">(0)</span>
+        </a>
+        <a href="https://udcdiamonds.com.ua/wishlist" class="icon-link" title="Обрані товари">
+          Обране <span class="icon-badge">(0)</span>
+        </a>
+        <a href="https://udcdiamonds.com.ua/checkout" class="icon-link" title="Кошик">
+          Кошик <span class="icon-badge">(0)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Tier 2: Perfectly Centered Navigation Menu -->
+    <div class="header-nav-tier">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/produkti">Каталог</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/produkti/kabluchki">Каблучки</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/produkti/serezhki">Сережки</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/produkti/brasleti">Браслети</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/produkti/pidviski">Підвіски</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/diamanti">Діаманти</a></li>
+        <li class="nav-item"><a href="https://udcdiamonds.com.ua/brend-udc">Про бренд</a></li>
+      </ul>
+    </div>
+
+  </header>
+
+  <!-- 6.2 CINEMATIC EDITORIAL HERO CAROUSEL (COLLECTIONS OF UDC) -->
+  <section class="hero-slider-section">
+    
+    <!-- Navigation Chevrons -->
+    <div class="slider-arrow-btn slider-arrow-prev" onclick="prevHeroSlide()">‹</div>
+    <div class="slider-arrow-btn slider-arrow-next" onclick="nextHeroSlide()">›</div>
+
+    <!-- Slides Track -->
+    <div class="hero-slider-track">
+      
+      <!-- Slide 1: UDC Fine Jewelry -->
+      <div class="hero-slide active" data-slide="0">
+        <div class="hero-container">
+          <div class="hero-editorial-content">
+            <div class="hero-eyebrow">Флагманська колекція UDC Fine Jewelry</div>
+            <h1 class="hero-headline">Чисте сяйво <em>природних</em> діамантів GIA</h1>
+            <p class="hero-description">
+              Ексклюзивні діамантові каблучки з міжнародними сертифікатами. Бездоганні камені прямих поставок з Ізраїльської алмазної біржі в оправі з білого золота 750° та платини.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://udcdiamonds.com.ua/produkti/kabluchki/eksklyuziv-1/?ajaxfilter=tag,dlya-zaruchin" class="btn-editorial-primary">
+                Подивитися прикраси
+              </a>
+              <a href="https://udcdiamonds.com.ua/nashe-virobnictvo" class="btn-editorial-secondary">
+                Наше виробництво
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual-stage">
+            <div class="hero-image-frame">
+              <img src="assets/graff-solitaire.jpg" alt="UDC Fine Jewelry Solitaire">
+              <div class="hero-spec-tag">
+                <span>Центральний камінь GIA</span>
+                <strong>2.00 CT · D / IF · Triple Ex</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Green Elegance -->
+      <div class="hero-slide" data-slide="1">
+        <div class="hero-container">
+          <div class="hero-editorial-content">
+            <div class="hero-eyebrow">Смарагдова колекція Green Elegance</div>
+            <h1 class="hero-headline">Шляхетна глибина <em>смарагдів</em> та золота</h1>
+            <p class="hero-description">
+              Сережки, каблучки та підвіски. Рідкісні колумбійські смарагди та білі діаманти в оправі з білого, рожевого та жовтого золота 750°.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://udcdiamonds.com.ua/news/kolekciya-yuvelirnyh-prykras-green-elegance" class="btn-editorial-primary">
+                Докладніше про колекцію
+              </a>
+              <a href="https://udcdiamonds.com.ua/produkti" class="btn-editorial-secondary">
+                Дивитися вироби
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual-stage">
+            <div class="hero-image-frame">
+              <img src="assets/collection-emerald.png" alt="UDC Green Elegance Collection">
+              <div class="hero-spec-tag">
+                <span>Смарагди & Діаманти</span>
+                <strong>Emerald 3.20 CT · Diamonds 0.85 CT</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Tenderness -->
+      <div class="hero-slide" data-slide="2">
+        <div class="hero-container">
+          <div class="hero-editorial-content">
+            <div class="hero-eyebrow">Ніжна колекція Tenderness</div>
+            <h1 class="hero-headline">Витончена ніжність <em>білих</em> діамантів</h1>
+            <p class="hero-description">
+              Сережки, каблучки, браслети та делікатні пусети. Досконала гармонія білих діамантів та благородного золота 750° на кожен день.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://udcdiamonds.com.ua/news/kolekciya-tenderness-vytonchenist-zolota-ta-pryrodnyh-diamantiv" class="btn-editorial-primary">
+                Подивитися прикраси
+              </a>
+              <a href="https://udcdiamonds.com.ua/magazini" class="btn-editorial-secondary">
+                Приміряти у бутику
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual-stage">
+            <div class="hero-image-frame">
+              <img src="assets/ring-halo.jpg" alt="UDC Tenderness Collection">
+              <div class="hero-spec-tag">
+                <span>Halo Setting</span>
+                <strong>18K White Gold · 1.50 CT</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Diamond Crosses -->
+      <div class="hero-slide" data-slide="3">
+        <div class="hero-container">
+          <div class="hero-editorial-content">
+            <div class="hero-eyebrow">Сакральне ювелірне мистецтво</div>
+            <h1 class="hero-headline">Колекція діамантових <em>хрестиків</em></h1>
+            <p class="hero-description">
+              Золото найвищої проби та натуральні діаманти бездоганної чистоти. Вічні духовні шедеври ручної роботи київських ювелірів.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://udcdiamonds.com.ua/produkti/pidviski/hrestiki" class="btn-editorial-primary">
+                Подивитися прикраси
+              </a>
+              <a href="https://udcdiamonds.com.ua/produkti/pidviski" class="btn-editorial-secondary">
+                Усі підвіски
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual-stage">
+            <div class="hero-image-frame">
+              <img src="assets/collection-crosses.png" alt="Колекція діамантових хрестиків UDC">
+              <div class="hero-spec-tag">
+                <span>Золото 750° & Діаманти</span>
+                <strong>Класичне закріплення каратних каменів</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Blue Velvet -->
+      <div class="hero-slide" data-slide="4">
+        <div class="hero-container">
+          <div class="hero-editorial-content">
+            <div class="hero-eyebrow">Сапфірова колекція Blue Velvet</div>
+            <h1 class="hero-headline">Королівський оксамит <em>синіх</em> сапфірів</h1>
+            <p class="hero-description">
+              Сережки, каблучки та підвіски. Глибокі волошкові сапфіри вищого ґатунку в оточенні сяючих діамантів класичного круглого огранювання.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://udcdiamonds.com.ua/news" class="btn-editorial-primary">
+                Подивитися прикраси
+              </a>
+              <a href="https://udcdiamonds.com.ua/magazini" class="btn-editorial-secondary">
+                Запис на примірку
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual-stage">
+            <div class="hero-image-frame">
+              <img src="assets/collection-sapphire.png" alt="Сапфірова колекція Blue Velvet UDC">
+              <div class="hero-spec-tag">
+                <span>Royal Blue Sapphire</span>
+                <strong>2.45 CT · Diamonds 0.90 CT</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Authentic Collection Indicator Tabs -->
+    <div class="slider-indicators">
+      <div class="slider-indicator-item active" onclick="goToSlide(0)">01 UDC Fine Jewelry</div>
+      <div class="slider-indicator-item" onclick="goToSlide(1)">02 Green Elegance</div>
+      <div class="slider-indicator-item" onclick="goToSlide(2)">03 Tenderness</div>
+      <div class="slider-indicator-item" onclick="goToSlide(3)">04 Хрестики</div>
+      <div class="slider-indicator-item" onclick="goToSlide(4)">05 Blue Velvet</div>
+    </div>
+  </section>
+
+  <!-- AUTHENTIC BRAND PILLARS -->
+  <section class="pillars-section">
+    <div class="pillars-grid">
+      <div class="pillar-item">
+        <span class="pillar-label">Сертифікація GIA</span>
+        <h3 class="pillar-title">100% Натуральні</h3>
+        <p class="pillar-desc">Кожен центральний діамант має лазерний номер на рундисті для міжнародної перевірки.</p>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-label">Спадщина майстерності</span>
+        <h3 class="pillar-title">Ательє з 2001 року</h3>
+        <p class="pillar-desc">Власне ювелірне виробництво повного циклу у Києві. Найвищі стандарти закріпки каменів.</p>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-label">Прямий імпорт</span>
+        <h3 class="pillar-title">Алмазна біржа</h3>
+        <p class="pillar-desc">Прямі поставки алмазів з Рамат-Гана (Ізраїль) без посередників та прихованих націнок.</p>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-label">Приватна примірка</span>
+        <h3 class="pillar-title">5 бутиків у Києві</h3>
+        <p class="pillar-desc">Флагманські салони в Ocean Plaza, Республіка Парк, Blockbuster, Lavina Mall.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.3 EDITORIAL COLLECTIONS GALLERY -->
+  <section class="gallery-section" id="categories">
+    <div class="section-header-editorial">
+      <span class="section-eyebrow">Ювелірний каталог UDC</span>
+      <h2 class="section-title">Вибрані категорії прикрас</h2>
+      <p class="section-subtitle">
+        Класичні солітери, архітектурні сережки, тенісні браслети та знакові підвіски, створені для моментів, що залишаються назавжди.
+      </p>
+    </div>
+
+    <div class="collections-grid-editorial">
+      
+      <!-- Category 1: Rings -->
+      <a href="https://udcdiamonds.com.ua/produkti/kabluchki" class="collection-card">
+        <div class="collection-image-wrapper">
+          <img src="assets/ring-front.jpg" alt="Каблучки з діамантами UDC">
+        </div>
+        <h3 class="collection-card-title">Каблучки</h3>
+        <div class="collection-card-meta">
+          <span>Для заручин, солітери, обручки</span>
+          <span class="collection-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Category 2: Earrings -->
+      <a href="https://udcdiamonds.com.ua/produkti/serezhki" class="collection-card">
+        <div class="collection-image-wrapper">
+          <img src="assets/ring-halo.jpg" alt="Сережки з діамантами UDC">
+        </div>
+        <h3 class="collection-card-title">Сережки</h3>
+        <div class="collection-card-meta">
+          <span>Пусети, підвісні, кафи, конго</span>
+          <span class="collection-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Category 3: Bracelets -->
+      <a href="https://udcdiamonds.com.ua/produkti/brasleti" class="collection-card">
+        <div class="collection-image-wrapper">
+          <img src="assets/ring-yellow.jpg" alt="Браслети UDC">
+        </div>
+        <h3 class="collection-card-title">Браслети</h3>
+        <div class="collection-card-meta">
+          <span>Тенісні доріжки, жорсткі, золото 750°</span>
+          <span class="collection-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Category 4: Necklaces / Crosses -->
+      <a href="https://udcdiamonds.com.ua/produkti/pidviski" class="collection-card">
+        <div class="collection-image-wrapper">
+          <img src="assets/ring-profile.jpg" alt="Підвіски та хрестики UDC">
+        </div>
+        <h3 class="collection-card-title">Підвіски</h3>
+        <div class="collection-card-meta">
+          <span>Хрестики, серця, солітери на лісці</span>
+          <span class="collection-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 6.4 FLAGSHIP PRODUCT SPOTLIGHT (AUTHENTIC MERCHANDISE) -->
+  <section class="spotlight-section">
+    <div class="spotlight-container">
+      
+      <div class="spotlight-gallery">
+        <span class="spotlight-badge">Флагман ательє</span>
+        <img src="assets/ring-front.jpg" alt="Каблучка Solitaire Royal UDC">
+      </div>
+
+      <div class="spotlight-content">
+        <div class="spotlight-sku">Артикул: UDC-SOL-0145 · GIA 248910284</div>
+        <h2 class="spotlight-title">Каблучка для заручин "Solitaire Royal"</h2>
+        <div class="spotlight-price">
+          285 000 ₴ <span class="spotlight-price-usd">~ $6 900 (ПДВ включено)</span>
+        </div>
+        <ul class="spotlight-features">
+          <li>Біле золото 750 проби (паладієва лігатура без нікелю)</li>
+          <li>Центральний природний діамант огранювання Princess 1.50 карата</li>
+          <li>Сертифікат Gemological Institute of America (GIA, США)</li>
+          <li>Можливість вибору розміру пальця від 15.0 до 21.0 мм</li>
+        </ul>
+        <div class="hero-cta-group">
+          <a href="https://udcdiamonds.com.ua/magazini" class="btn-editorial-primary">
+            Забронювати примірку в бутику
+          </a>
+          <a href="https://udcdiamonds.com.ua/produkti/kabluchki/eksklyuziv-1/?ajaxfilter=tag,dlya-zaruchin" class="btn-editorial-secondary">
+            Усі солітери
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6.7 AUTHENTIC UDC FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top-grid">
+      
+      <div class="footer-brand-col">
+        <h4>UDC DIAMONDS</h4>
+        <p style="line-height: 1.8; margin-bottom: 20px; font-weight: 300;">
+          Український Діамантовий Центр — дім високого ювелірного мистецтва. Власне виробництво натуральних сертифікованих діамантів у Києві з 2001 року.
+        </p>
+        <p style="color: #bbbbbb;">
+          Гаряча лінія: <strong style="color: #fff;">0 800 330 740</strong><br>
+          (Безкоштовно по всій Україні)
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Каталог</div>
+        <ul class="footer-links-list">
+          <li><a href="https://udcdiamonds.com.ua/produkti/kabluchki">Каблучки</a></li>
+          <li><a href="https://udcdiamonds.com.ua/produkti/serezhki">Сережки</a></li>
+          <li><a href="https://udcdiamonds.com.ua/produkti/brasleti">Браслети</a></li>
+          <li><a href="https://udcdiamonds.com.ua/produkti/pidviski">Підвіски</a></li>
+          <li><a href="https://udcdiamonds.com.ua/diamanti">Діаманти</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Сервіс & Клієнтам</div>
+        <ul class="footer-links-list">
+          <li><a href="https://udcdiamonds.com.ua/magazini">Бутики в Києві</a></li>
+          <li><a href="https://udcdiamonds.com.ua/oplata-i-dostavka">Оплата і доставка</a></li>
+          <li><a href="https://udcdiamonds.com.ua/obmin-ta-povernennya">Обмін та повернення</a></li>
+          <li><a href="https://udcdiamonds.com.ua/garantiya-yakosti">Гарантія якості</a></li>
+          <li><a href="https://udcdiamonds.com.ua/diskontna-programa">Дисконтна програма</a></li>
+          <li><a href="https://udcdiamonds.com.ua/faq">Питання-Відповідь</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Флагманські салони (Київ)</div>
+        <ul class="footer-links-list" style="font-size: 11px;">
+          <li>ТРЦ «Ocean Plaza», 1 поверх (вул. Антоновича, 176)</li>
+          <li>ТРЦ «Respublika Park», 1 поверх (Кільцева дорога, 1)</li>
+          <li>ТРЦ «Blockbuster Mall», 1 поверх (просп. С. Бандери, 36)</li>
+          <li>ТРЦ «Lavina Mall», 1 поверх (вул. Берковецька, 6Д)</li>
+          <li>Головний офіс-ательє UDC (вул. Саксаганського, 119)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2001–2026 UDC Diamonds. Всі права захищені. Ювелірне виробництво сертифіковано.</div>
+      <div style="display: flex; gap: 20px;">
+        <a href="https://www.facebook.com/udcdiamondskyiv" style="color: inherit; text-decoration: none;">Facebook</a>
+        <a href="https://instagram.com/udcdiamonds/" style="color: inherit; text-decoration: none;">Instagram</a>
+        <a href="https://www.youtube.com/channel/UC_G8YzDDPq7IEojYirPTzig" style="color: inherit; text-decoration: none;">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.slider-indicator-item');
+    const totalSlides = slides.length;
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlide = index;
+
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentSlide);
+      });
+      indicators.forEach((ind, idx) => {
+        ind.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function nextHeroSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevHeroSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    // Auto-advance every 6.5s unless hovered
+    let autoPlay = setInterval(nextHeroSlide, 6500);
+    const sliderSection = document.querySelector('.hero-slider-section');
+    sliderSection.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    sliderSection.addEventListener('mouseleave', () => {
+      clearInterval(autoPlay);
+      autoPlay = setInterval(nextHeroSlide, 6500);
+    });
+  </script>
+</body>
+</html>

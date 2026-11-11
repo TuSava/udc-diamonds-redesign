@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDC DIAMONDS — Interactive Prototype Architecture & Flow (Etap 4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-warm-white: #FAF9F6;
+      --color-ivory: #F1EEE8;
+      --color-champagne: #D8CBB8;
+      --color-border: rgba(216, 203, 184, 0.4);
+      --color-charcoal: #292929;
+      --color-black: #111111;
+      --color-gold: #C5A059;
+      
+      --font-serif-display: 'Cormorant Garamond', Georgia, serif;
+      --font-serif-brand: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #FAF9F6;
+      color: var(--color-charcoal);
+      font-family: var(--font-sans);
+      padding: 60px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .flow-header {
+      border-bottom: 2px solid var(--color-champagne);
+      padding-bottom: 36px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .flow-title {
+      font-family: var(--font-serif-brand);
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--color-black);
+    }
+
+    .flow-subtitle {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-top: 6px;
+    }
+
+    .flow-meta {
+      text-align: right;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    /* FLOW MAP GRID */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 50px;
+    }
+
+    .flow-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .flow-card-num {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      background: rgba(197, 160, 89, 0.12);
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    .flow-card-title {
+      font-family: var(--font-serif-brand);
+      font-size: 22px;
+      color: var(--color-black);
+      margin-bottom: 8px;
+    }
+
+    .flow-card-desc {
+      font-size: 12.5px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* STEP PIPELINE */
+    .step-pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--color-ivory);
+      padding: 14px 18px;
+      border-radius: 3px;
+      border: 1px solid rgba(216, 203, 184, 0.5);
+    }
+
+    .step-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--color-black);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin-bottom: 2px;
+    }
+
+    .step-content-desc {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    /* INTERACTION TABLE */
+    .interaction-section {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 36px;
+    }
+
+    .table-title {
+      font-family: var(--font-serif-brand);
+      font-size: 22px;
+      color: var(--color-black);
+      margin-bottom: 20px;
+    }
+
+    .interaction-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .interaction-table th,
+    .interaction-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 12px;
+    }
+
+    .interaction-table th {
+      background: var(--color-ivory);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #888;
+    }
+
+    .tag-state {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 10px;
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 2px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="flow-header">
+    <div>
+      <div class="flow-title">UDC DIAMONDS</div>
+      <div class="flow-subtitle">Interactive Prototype Architecture & Screen Journeys · Etap 4</div>
+    </div>
+    <div class="flow-meta">
+      <strong>Prototype Type:</strong> Multi-Device Luxury Experience<br>
+      <strong>Endpoints:</strong> Homepage, PDP Solitaire, Concierge Booking<br>
+      <strong>Resolution:</strong> 1440px Desktop · 768px Tablet · 390px Mobile
+    </div>
+  </header>
+
+  <!-- 4 CORE JOURNEYS -->
+  <div class="flow-grid">
+    <!-- Journey 1 -->
+    <div class="flow-card">
+      <div class="flow-card-num">Сценарій 01</div>
+      <h3 class="flow-card-title">Відкриття колекцій (Hero Discovery Flow)</h3>
+      <p class="flow-card-desc">
+        Головний емоційний вхід користувача у цифровий простір UDC. Ознайомлення з діамантами GIA та колекціями ательє.
+      </p>
+
+      <div class="step-pipeline">
+        <div class="step-node">
+          <div class="step-dot">1</div>
+          <div>
+            <div class="step-content-title">Перший екран: Hero Slider</div>
+            <div class="step-content-desc">Авто-перемикання 5 колекцій (6.5s) або свайп/клік по табах внизу.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">2</div>
+          <div>
+            <div class="step-content-title">Інспекція сертифіката каменя</div>
+            <div class="step-content-desc">Клік по бейджу «2.00 CT · D / IF · Triple Ex» відкриває параметри GIA.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">3</div>
+          <div>
+            <div class="step-content-title">Перехід до каталогу колекції</div>
+            <div class="step-content-desc">CTA «Подивитися прикраси» фільтрує вітрину за відповідною колекцією.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 2 -->
+    <div class="flow-card">
+      <div class="flow-card-num">Сценарій 02</div>
+      <h3 class="flow-card-title">Приватний візит у бутик (VIP Boutique Booking)</h3>
+      <p class="flow-card-desc">
+        Прямий шлях конверсії для high-ticket покупок ($2,000–$15,000+). Організація персональної зустрічі з гемологом.
+      </p>
+
+      <div class="step-pipeline">
+        <div class="step-node">
+          <div class="step-dot">1</div>
+          <div>
+            <div class="step-content-title">Тригер: Хедер або Стікі-бар</div>
+            <div class="step-content-desc">Клік на «Запис на примірку в бутик» (десктоп) або плаваючий баттон (моб).</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">2</div>
+          <div>
+            <div class="step-content-title">Вибір одного з 4 салонів Києва</div>
+            <div class="step-content-desc">Ocean Plaza, Respublika Park, Blockbuster Mall або Lavina Mall.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">3</div>
+          <div>
+            <div class="step-content-title">Підтвердження візиту</div>
+            <div class="step-content-desc">Консьєрж готує окремий приватний лаунж та підбирає діаманти під мікроскоп.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 3 -->
+    <div class="flow-card">
+      <div class="flow-card-num">Сценарій 03</div>
+      <h3 class="flow-card-title">Мобільна консьєрж-навігація (Mobile Drawer)</h3>
+      <p class="flow-card-desc">
+        Швидкий тактильний доступ до всіх сервісів на смартфонах без когнітивного перевантаження.
+      </p>
+
+      <div class="step-pipeline">
+        <div class="step-node">
+          <div class="step-dot">1</div>
+          <div>
+            <div class="step-content-title">Тап по кнопці гамбургера</div>
+            <div class="step-content-desc">Тач-таргет 44×44px, плавний виїзд шторки (450ms) з розмиттям бекдропу.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">2</div>
+          <div>
+            <div class="step-content-title">Прямий дзвінок 0 800 330 740</div>
+            <div class="step-content-desc">Один тап у верхньому блоці шторки викликає безкоштовну гарячу лінію.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">3</div>
+          <div>
+            <div class="step-content-title">Групування категорій & сервісів</div>
+            <div class="step-content-desc">Чіткий розподіл на ювелірний каталог та клубні привілеї UDC.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 4 -->
+    <div class="flow-card">
+      <div class="flow-card-num">Сценарій 04</div>
+      <h3 class="flow-card-title">Вибір виробу та порівняння (Product Selection)</h3>
+      <p class="flow-card-desc">
+        Взаємодія з реальними ювелірними виробами (Fancy Yellow, Pavé Trilogy, трансформери).
+      </p>
+
+      <div class="step-pipeline">
+        <div class="step-node">
+          <div class="step-dot">1</div>
+          <div>
+            <div class="step-content-title">Ховер на картці товару</div>
+            <div class="step-content-desc">Мікро-масштабування фотографії каменя (+5%) та поява дії «Приміряти».</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">2</div>
+          <div>
+            <div class="step-content-title">Додавання до порівняння / обраного</div>
+            <div class="step-content-desc">Кнопка «Порівняння (0)» у хедері оновлює лічильник без перезавантаження.</div>
+          </div>
+        </div>
+
+        <div class="step-node">
+          <div class="step-dot">3</div>
+          <div>
+            <div class="step-content-title">Перехід до примірки</div>
+            <div class="step-content-desc">Прямий запис на огляд конкретного артикула у вибраному салоні.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTION AUDIT TABLE -->
+  <section class="interaction-section">
+    <h3 class="table-title">Аудит станів інтерактивних елементів (Interaction States Matrix)</h3>
+    <table class="interaction-table">
+      <thead>
+        <tr>
+          <th>Елемент інтерфейсу</th>
+          <th>Default State</th>
+          <th>Hover / Focus State</th>
+          <th>Active / Touch State</th>
+          <th>Apple HIG / Motion критерій</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Головна кнопка CTA</strong></td>
+          <td><span class="tag-state">#111111 solid, white text</span></td>
+          <td><span class="tag-state">#2b2b2b, translateY(-1px)</span></td>
+          <td><span class="tag-state">#000000, scale(0.98)</span></td>
+          <td>Мінімум 44px висоти, плавна зміна 250ms</td>
+        </tr>
+        <tr>
+          <td><strong>Мобільний гамбургер</strong></td>
+          <td><span class="tag-state">2 лінії 22×1.5px</span></td>
+          <td><span class="tag-state">Опасіті 0.7</span></td>
+          <td><span class="tag-state">Трансформація у ✕</span></td>
+          <td>Тач-таргет 44×44px, нульова затримка тапу</td>
+        </tr>
+        <tr>
+          <td><strong>Картка ювелірного виробу</strong></td>
+          <td><span class="tag-state">Бордер 1px, тінь відсутня</span></td>
+          <td><span class="tag-state">Підняття -4px, тінь 10px</span></td>
+          <td><span class="tag-state">Плавний перехід на сторінку</span></td>
+          <td>Фото-бокс 1:1, захист від накладання тексту</td>
+        </tr>
+        <tr>
+          <td><strong>Таби колекцій Hero</strong></td>
+          <td><span class="tag-state">Текст #777, бордер делікатний</span></td>
+          <td><span class="tag-state">Текст #111, фон #F1EEE8</span></td>
+          <td><span class="tag-state">Активна пігулка з лінією</span></td>
+          <td>Горизонтальний скрол-снеп на мобайлі</td>
+        </tr>
+        <tr>
+          <td><strong>Нижня стікі-панель</strong></td>
+          <td><span class="tag-state">Блюр 20px, фон 96% #FAF9F6</span></td>
+          <td><span class="tag-state">Підсвітка золотом</span></td>
+          <td><span class="tag-state">Миттєвий виклик номера/модалки</span></td>
+          <td>Враховано env(safe-area-inset-bottom)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</body>
+</html>
+

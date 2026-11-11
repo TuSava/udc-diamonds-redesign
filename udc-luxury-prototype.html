@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>UDC Diamonds — High Jewelry Digital Flagship Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Default: Alabaster Luxury Palette (Solo for Diamonds & High Salon Aesthetic) */
+      --bg-primary: #fcfbf9;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f5f3ef;
+      --text-main: #141518;
+      --text-muted: #6b7280;
+      --gold-accent: #b38b4d;
+      --gold-hover: #987239;
+      --gold-subtle: rgba(179, 139, 77, 0.1);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-gold: rgba(179, 139, 77, 0.35);
+      --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      /* Obsidian Luxury Palette (Graff Inspired) */
+      --bg-primary: #0a0b0d;
+      --bg-surface: #121418;
+      --bg-elevated: #1a1d24;
+      --text-main: #f5f5f7;
+      --text-muted: #959aa3;
+      --gold-accent: #c8a97e;
+      --gold-hover: #dfc298;
+      --gold-subtle: rgba(200, 169, 126, 0.15);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(200, 169, 126, 0.35);
+      --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      transition: background-color 0.35s ease, color 0.35s ease;
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: 70px; /* Space for mobile sticky bottom bar */
+    }
+
+    /* ----------------------------------------------------
+       TOP PITCH BAR (COMPACT & RESPONSIVE)
+       ---------------------------------------------------- */
+    .pitch-banner {
+      background: #111317;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 20px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #c8a97e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1001;
+      position: relative;
+    }
+
+    .pitch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pitch-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #4ade80;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1px solid #c8a97e;
+      color: #c8a97e;
+      padding: 4px 10px;
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ----------------------------------------------------
+       MAIN NAVIGATION HEADER
+       ---------------------------------------------------- */
+    .main-header {
+      position: sticky;
+      top: 0;
+      background: var(--bg-primary);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 900px) {
+      .nav-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 40px;
+      }
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .brand-logo-wrap {
+      text-align: left;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (min-width: 900px) {
+      .brand-logo-wrap {
+        text-align: center;
+      }
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 4vw, 28px);
+      letter-spacing: 3px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .brand-subtitle {
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-accent);
+      margin-top: 3px;
+      display: block;
+    }
+
+    /* Screen Tabs (Responsive scroll on mobile) */
+    .nav-screens-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--bg-surface);
+      padding: 4px;
+      border-radius: 40px;
+      border: 1px solid var(--border-subtle);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+    }
+
+    .nav-screens-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screen-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex: 1;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .screen-tab.active {
+      background: var(--gold-accent);
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .btn-header-appointment {
+      display: none;
+      border: 1px solid var(--gold-accent);
+      color: var(--gold-accent);
+      padding: 8px 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 900px) {
+      .btn-header-appointment {
+        display: block;
+      }
+      .nav-screens-tabs {
+        width: auto;
+      }
+      .header-top-row {
+        width: auto;
+      }
+    }
+
+    /* Screen Views */
+    .screen-view {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .screen-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----------------------------------------------------
+       SCREEN 1: HERO / HAUTE JOAILLERIE
+       ---------------------------------------------------- */
+    .hero-editorial {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 20px 40px 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 30px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-editorial {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        align-items: center;
+        padding: 40px 60px;
+        min-height: 82vh;
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-content {
+        text-align: left;
+        padding-right: 40px;
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold-accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-eyebrow {
+        justify-content: flex-start;
+      }
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold-accent);
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 7.5vw, 64px);
+      line-height: 1.1;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-headline i {
+      font-style: italic;
+      color: var(--gold-accent);
+    }
+
+    .hero-description {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0 auto 30px auto;
+      max-width: 480px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-description {
+        margin: 0 0 40px 0;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .hero-buttons {
+        justify-content: flex-start;
+      }
+    }
+
+    .btn-primary-luxury {
+      background: var(--gold-accent);
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 28px;
+      border: 1px solid var(--gold-accent);
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-primary-luxury:hover {
+      background: var(--gold-hover);
+    }
+
+    .btn-secondary-luxury {
+      background: transparent;
+      color: var(--text-main);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 28px;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* Hero Visual Showcase */
+    .hero-visual-stage {
+      position: relative;
+      width: 100%;
+      height: 48vh;
+      min-height: 320px;
+      max-height: 600px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-visual-stage {
+        height: 72vh;
+      }
+    }
+
+    .hero-image-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+    }
+
+    .hero-overlay-tag {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      left: 12px;
+      background: rgba(18, 20, 24, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-gold);
+      padding: 10px 14px;
+      text-align: center;
+    }
+
+    @media (min-width: 600px) {
+      .hero-overlay-tag {
+        left: auto;
+        bottom: 20px;
+        right: 20px;
+        text-align: right;
+      }
+    }
+
+    .hero-overlay-tag .col-name {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .hero-overlay-tag .col-specs {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: #dfc298;
+      text-transform: uppercase;
+    }
+
+    /* Metrics Strip */
+    .hero-metrics-strip {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-metrics-strip {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 30px 60px;
+        text-align: left;
+      }
+    }
+
+    .metric-value {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 400;
+      color: var(--gold-accent);
+    }
+
+    .metric-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ----------------------------------------------------
+       SCREEN 2: PRODUCT DETAIL PAGE (PDP RESPONSIVE UX)
+       ---------------------------------------------------- */
+    .pdp-wrapper {
+      max-width: 1360px;
+      margin: 16px auto 60px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      .pdp-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+        gap: 60px;
+        align-items: start;
+        padding: 0 40px;
+        margin-top: 30px;
+      }
+    }
+
+    @media (min-width: 1300px) {
+      .pdp-wrapper {
+        grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+        gap: 70px;
+      }
+    }
+
+    .pdp-gallery-column {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 1024px) {
+      .pdp-gallery-column {
+        position: sticky;
+        top: 130px;
+        margin: 0;
+      }
+    }
+
+    .main-photo-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-height: 520px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--card-shadow);
+    }
+
+    .main-photo-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 24px;
+      transition: opacity 0.25s ease;
+    }
+
+    .gia-float-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(18, 20, 24, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-gold);
+      color: #dfc298;
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      padding: 5px 10px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    /* Thumbnails Row: Clean Separation of Image and Text (No Overlap) */
+    .gallery-thumbnails-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .thumb-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .thumb-img-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .thumb-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+    }
+
+    .thumb-card.active .thumb-img-box,
+    .thumb-card:hover .thumb-img-box {
+      border-color: var(--gold-accent);
+      background: var(--gold-subtle);
+    }
+
+    .thumb-card.active .thumb-img-box img,
+    .thumb-card:hover .thumb-img-box img {
+      opacity: 1;
+    }
+
+    .thumb-label {
+      font-size: 9px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .thumb-card.active .thumb-label {
+      color: var(--gold-accent);
+      font-weight: 500;
+    }
+
+    /* Details Column */
+    .pdp-breadcrumbs {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .pdp-breadcrumbs span {
+      margin: 0 4px;
+      color: var(--gold-accent);
+    }
+
+    .pdp-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .pdp-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 20px;
+    }
+
+    .price-main {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 5vw, 36px);
+      color: var(--gold-accent);
+      font-weight: 400;
+    }
+
+    .price-usd {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .config-section {
+      margin-bottom: 20px;
+    }
+
+    .config-title {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .config-title strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .metal-swatch-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .swatch-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 12px 8px;
+      min-height: 48px; /* Touch target */
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    @media (min-width: 600px) {
+      .swatch-btn {
+        flex-direction: row;
+        padding: 12px 14px;
+        text-align: left;
+      }
+    }
+
+    .swatch-btn .circle-indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    .swatch-btn.active {
+      border-color: var(--gold-accent);
+      background: var(--gold-subtle);
+    }
+
+    /* Carat Buttons */
+    .carat-selector-group {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .carat-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 4px;
+      min-height: 48px;
+      text-align: center;
+      border-radius: 2px;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .carat-btn .carat-wt {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      display: block;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .carat-btn .carat-sub {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .carat-btn.active {
+      border-color: var(--gold-accent);
+      background: var(--gold-subtle);
+    }
+
+    /* Size selector */
+    .size-selector-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .size-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--text-main);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .size-btn.active {
+      border-color: var(--gold-accent);
+      background: var(--gold-subtle);
+    }
+
+    /* GIA Guarantee Box */
+    .gia-card-panel {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--gold-accent);
+      padding: 14px 16px;
+      margin: 20px 0;
+      border-radius: 0 2px 2px 0;
+      box-shadow: var(--card-shadow);
+    }
+
+    .gia-card-panel h4 {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-accent);
+      margin-bottom: 4px;
+    }
+
+    .gia-card-panel p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .gia-link {
+      color: var(--gold-accent);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Boutique Booking Panel */
+    .boutique-booking-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      padding: 18px;
+      border-radius: 2px;
+      margin-top: 20px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .booking-prompt {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .select-boutique-dropdown {
+      width: 100%;
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 12px 14px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      margin-bottom: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .action-button-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .action-button-stack {
+        flex-direction: row;
+      }
+    }
+
+    .btn-reserve-salon {
+      background: var(--gold-accent);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px;
+      min-height: 48px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      flex: 1.2;
+    }
+
+    .btn-order-online {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px;
+      min-height: 48px;
+      cursor: pointer;
+      text-align: center;
+      flex: 1;
+    }
+
+    /* ----------------------------------------------------
+       STICKY BOTTOM BAR (MOBILE CONVERSION)
+       ---------------------------------------------------- */
+    .mobile-sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-gold);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.15);
+    }
+
+    @media (min-width: 900px) {
+      .mobile-sticky-bar {
+        display: none;
+      }
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    .sticky-price-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sticky-price-val {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--gold-accent);
+      line-height: 1.1;
+    }
+
+    .sticky-price-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .btn-sticky-book {
+      background: var(--gold-accent);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    /* ----------------------------------------------------
+       SCREEN 3: DIAMOND CONCIERGE 4C
+       ---------------------------------------------------- */
+    .concierge-page-wrap {
+      max-width: 1400px;
+      margin: 20px auto 60px auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 900px) {
+      .concierge-page-wrap {
+        padding: 0 40px;
+        margin-top: 40px;
+      }
+    }
+
+    .concierge-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+    }
+
+    .concierge-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .concierge-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Shapes Selector (2 columns on mobile, 6 on desktop) */
+    .shapes-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 600px) {
+      .shapes-selector-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .shapes-selector-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+        margin-bottom: 50px;
+      }
+    }
+
+    .shape-interactive-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 10px 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .shape-interactive-card svg {
+      width: 42px;
+      height: 42px;
+      stroke: var(--gold-accent);
+      fill: none;
+      stroke-width: 1;
+      margin-bottom: 10px;
+    }
+
+    .shape-interactive-card .shape-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .shape-interactive-card .shape-ratio {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .shape-interactive-card.active {
+      border-color: var(--gold-accent);
+      background: var(--gold-subtle);
+    }
+
+    /* 4C Visualizer Hub */
+    .four-c-hub {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      box-shadow: var(--card-shadow);
+    }
+
+    @media (min-width: 900px) {
+      .four-c-hub {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        padding: 40px;
+      }
+    }
+
+    .carat-scale-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 3px;
+      background: var(--border-gold);
+      outline: none;
+      margin: 20px 0;
+    }
+
+    .carat-scale-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: var(--gold-accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(179, 139, 77, 0.6);
+    }
+
+    .finger-preview-container {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      height: 260px;
+      position: relative;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    @media (min-width: 600px) {
+      .finger-preview-container {
+        height: 320px;
+      }
+    }
+
+    .finger-silhouette {
+      position: absolute;
+      width: 75px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.06) 100%);
+      border-left: 1px dashed var(--border-subtle);
+      border-right: 1px dashed var(--border-subtle);
+    }
+
+    [data-theme="dark"] .finger-silhouette {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 100%);
+    }
+
+    .live-diamond-faceted {
+      position: relative;
+      z-index: 2;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e0f2fe 40%, #c8a97e 85%, #785928 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(179, 139, 77, 0.45);
+      transition: width 0.2s, height 0.2s;
+    }
+
+    /* Modal for Boutique Booking */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      max-width: 480px;
+      width: 100%;
+      padding: 30px 20px;
+      position: relative;
+      box-shadow: var(--card-shadow);
+      border-radius: 2px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .input-luxury {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 14px;
+      margin-bottom: 12px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      outline: none;
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- Pitch Bar -->
+  <aside class="pitch-banner">
+    <div class="pitch-badge">
+      UDC Diamonds • Flagship Redesign
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button class="theme-toggle-btn" onclick="toggleTheme()"><span id="theme-name">Ivory / Obsidian</span></button>
+    </div>
+  </aside>
+
+  <!-- Main Luxury Header -->
+  <header class="main-header">
+    <div class="nav-container">
+      <div class="header-top-row">
+        <a href="#" class="brand-logo-wrap">
+          <div class="brand-title">UDC DIAMONDS</div>
+          <span class="brand-subtitle">Київ • Haute Joaillerie • з 2001</span>
+        </a>
+        <button class="btn-header-appointment" onclick="openBookingModal('Київ, ТРЦ Ocean Plaza, 1-й поверх')">Запис у бутік</button>
+      </div>
+
+      <!-- Screen Switcher Tabs -->
+      <nav class="nav-screens-tabs">
+        <button class="screen-tab active" onclick="activateScreen('screen-hero', this)">1. Головна</button>
+        <button class="screen-tab" onclick="activateScreen('screen-pdp', this)">2. Карточка (PDP)</button>
+        <button class="screen-tab" onclick="activateScreen('screen-concierge', this)">3. Concierge 4C</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SCREEN 1: HERO / HAUTE JOAILLERIE
+       ========================================================================= -->
+  <main id="screen-hero" class="screen-view active">
+    <section class="hero-editorial">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Сертифікація GIA</div>
+        <h1 class="hero-headline">Чисте сяйво <i>натуральних</i> діамантів</h1>
+        <p class="hero-description">
+          Бездоганні алмази Ізраїльської біржі та віртуозна київська майстерність. Сертифіковані камені з лазерним номером GIA на рундисті.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-primary-luxury" onclick="activateScreen('screen-pdp', document.querySelectorAll('.screen-tab')[1])">Колекція Solitaire</button>
+          <button class="btn-secondary-luxury" onclick="activateScreen('screen-concierge', document.querySelectorAll('.screen-tab')[2])">Гід з огранювання 4C</button>
+        </div>
+      </div>
+
+      <div class="hero-visual-stage">
+        <div class="hero-image-card">
+          <!-- Real official Graff Solitaire High-Jewellery Piece -->
+          <img src="assets/graff-solitaire.jpg" alt="UDC Diamonds Solitaire Royal" id="hero-main-img">
+          <div class="hero-overlay-tag">
+            <div class="col-name">Solitaire Royal 2.00 ct</div>
+            <div class="col-specs">Платина 950° • Колір D • Чистота IF</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Metrics Strip -->
+    <section class="hero-metrics-strip">
+      <div class="metric-item">
+        <div class="metric-value">100% GIA</div>
+        <div class="metric-label">Сертифіковані</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">25 Років</div>
+        <div class="metric-label">Ательє в Києві</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">5 Бутиків</div>
+        <div class="metric-label">Ocean Plaza • Respublika</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">Bespoke</div>
+        <div class="metric-label">Дизайн за 14 днів</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       SCREEN 2: PRODUCT DETAIL PAGE (PDP RESPONSIVE)
+       ========================================================================= -->
+  <main id="screen-pdp" class="screen-view">
+    <div class="pdp-wrapper">
+      
+      <!-- Left Column: High-Res Real Jewelry Gallery -->
+      <div class="pdp-gallery-column">
+        <div class="main-photo-stage">
+          <div class="gia-float-badge">GIA № 248910284</div>
+          <img id="pdp-active-img" src="assets/ring-front.jpg" alt="UDC Diamonds Solitaire Royal">
+        </div>
+        
+        <!-- Interactive Thumbnails -->
+        <div class="gallery-thumbnails-row">
+          <div class="thumb-card active" onclick="switchPdpImage(this, 'assets/ring-front.jpg')">
+            <div class="thumb-img-box">
+              <img src="assets/ring-front.jpg" alt="Фас">
+            </div>
+            <span class="thumb-label">Фас 1:1</span>
+          </div>
+          <div class="thumb-card" onclick="switchPdpImage(this, 'assets/ring-profile.jpg')">
+            <div class="thumb-img-box">
+              <img src="assets/ring-profile.jpg" alt="Профіль каста">
+            </div>
+            <span class="thumb-label">Профіль</span>
+          </div>
+          <div class="thumb-card" onclick="switchPdpImage(this, 'assets/ring-yellow.jpg')">
+            <div class="thumb-img-box">
+              <img src="assets/ring-yellow.jpg" alt="Жовте золото">
+            </div>
+            <span class="thumb-label">Жовте 750°</span>
+          </div>
+          <div class="thumb-card" onclick="switchPdpImage(this, 'assets/ring-halo.jpg')">
+            <div class="thumb-img-box">
+              <img src="assets/ring-halo.jpg" alt="Halo версія">
+            </div>
+            <span class="thumb-label">Halo версія</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Luxury Configurator -->
+      <div class="pdp-details-column">
+        <div class="pdp-breadcrumbs">
+          Каблучки <span>/</span> Для заручин <span>/</span> Solitaire Royal
+        </div>
+        
+        <h2 class="pdp-title">Каблучка "Solitaire Royal"</h2>
+        
+        <div class="pdp-price-row">
+          <div class="price-main" id="dynamic-price">285 000 ₴</div>
+          <div class="price-usd" id="dynamic-usd">~ $6 900 (ПДВ включено)</div>
+        </div>
+
+        <!-- 1. Metal Selector -->
+        <div class="config-section">
+          <div class="config-title">
+            Метал: <strong id="active-metal-label">Біле золото 750°</strong>
+          </div>
+          <div class="metal-swatch-group">
+            <button class="swatch-btn active" onclick="selectMetal(this, 'Біле золото 750°', 0, 'assets/ring-front.jpg')">
+              <span class="circle-indicator" style="background: linear-gradient(135deg, #f0f0f0, #c4c4c4);"></span>
+              Біле 750°
+            </button>
+            <button class="swatch-btn" onclick="selectMetal(this, 'Жовте золото 750°', 0, 'assets/ring-yellow.jpg')">
+              <span class="circle-indicator" style="background: linear-gradient(135deg, #fae084, #c99f36);"></span>
+              Жовте 750°
+            </button>
+            <button class="swatch-btn" onclick="selectMetal(this, 'Платина 950°', 25000, 'assets/ring-front.jpg')">
+              <span class="circle-indicator" style="background: linear-gradient(135deg, #e5e7eb, #9ca3af);"></span>
+              Платина 950°
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Carat Weight Selector -->
+        <div class="config-section">
+          <div class="config-title">
+            Вага діаманта: <strong id="active-carat-label">1.50 ct (F / VVS1)</strong>
+          </div>
+          <div class="carat-selector-group">
+            <button class="carat-btn" onclick="selectCarat(this, '1.00 ct', 'F / VVS2', 178000, '4 300')">
+              <span class="carat-wt">1.00</span>
+              <span class="carat-sub">6.5 мм</span>
+            </button>
+            <button class="carat-btn active" onclick="selectCarat(this, '1.50 ct', 'F / VVS1', 285000, '6 900')">
+              <span class="carat-wt">1.50</span>
+              <span class="carat-sub">7.4 мм</span>
+            </button>
+            <button class="carat-btn" onclick="selectCarat(this, '2.00 ct', 'E / VVS1', 495000, '11 980')">
+              <span class="carat-wt">2.00</span>
+              <span class="carat-sub">8.2 мм</span>
+            </button>
+            <button class="carat-btn" onclick="selectCarat(this, '3.00 ct', 'D / IF', 920000, '22 250')">
+              <span class="carat-wt">3.00</span>
+              <span class="carat-sub">9.3 мм</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Ring Finger Size -->
+        <div class="config-section">
+          <div class="config-title">
+            Розмір пальця: <strong id="active-size-label">16.5 мм</strong>
+            <a href="#" style="color: var(--gold-accent); text-decoration: none; font-size: 10px;" onclick="alert('Безкоштовна зміна розміру протягом 30 днів після покупки або примірка пальцеміра в будь-якому бутіку UDC.')">Гід розмірів</a>
+          </div>
+          <div class="size-selector-row">
+            <button class="size-btn" onclick="selectSize(this, '16.0 мм')">16.0</button>
+            <button class="size-btn active" onclick="selectSize(this, '16.5 мм')">16.5</button>
+            <button class="size-btn" onclick="selectSize(this, '17.0 мм')">17.0</button>
+            <button class="size-btn" onclick="selectSize(this, '17.5 мм')">17.5</button>
+            <button class="size-btn" onclick="selectSize(this, '18.0 мм')">18.0</button>
+          </div>
+        </div>
+
+        <!-- GIA Trust Card -->
+        <div class="gia-card-panel">
+          <h4>Сертифікат Gemological Institute of America</h4>
+          <p>
+            Лазерний номер сертифіката <strong>GIA 248910284</strong> на рундисті.  
+            <span class="gia-link" onclick="window.open('https://www.gia.edu/report-check-landing', '_blank')">Перевірити на gia.edu ↗</span>
+          </p>
+        </div>
+
+        <!-- Boutique Reservation Box -->
+        <div class="boutique-booking-box">
+          <div class="booking-prompt">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Оберіть бутік для примірки:
+          </div>
+          <select id="boutique-selector-pdp" class="select-boutique-dropdown">
+            <option value="Київ — ТРЦ Ocean Plaza, 1-й поверх (В наявності)">Київ — ТРЦ Ocean Plaza, 1-й поверх (В наявності)</option>
+            <option value="Київ — ТРЦ Respublika Park, 1-й поверх">Київ — ТРЦ Respublika Park, 1-й поверх</option>
+            <option value="Київ — ТРЦ Blockbuster Mall">Київ — ТРЦ Blockbuster Mall</option>
+            <option value="Київ — ТРЦ Lavina Mall">Київ — ТРЦ Lavina Mall</option>
+          </select>
+
+          <div class="action-button-stack">
+            <button class="btn-reserve-salon" onclick="openBookingModal(document.getElementById('boutique-selector-pdp').value)">Забронювати візит</button>
+            <button class="btn-order-online" onclick="alert('Виріб додано до кошика. Персональний консьєрж зв\'яжеться з вами для узгодження доставки.')">Купити онлайн</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sticky Purchase & Booking Bar -->
+    <div class="mobile-sticky-bar">
+      <div class="sticky-price-wrap">
+        <span class="sticky-price-val" id="sticky-price-display">285 000 ₴</span>
+        <span class="sticky-price-label">GIA 1.50 ct • 750°</span>
+      </div>
+      <button class="btn-sticky-book" onclick="openBookingModal(document.getElementById('boutique-selector-pdp').value)">Приміряти</button>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       SCREEN 3: DIAMOND CONCIERGE (SOLO FOR DIAMONDS UX)
+       ========================================================================= -->
+  <main id="screen-concierge" class="screen-view">
+    <div class="concierge-page-wrap">
+      <div class="concierge-header">
+        <div class="hero-eyebrow">UDC Concierge 4C</div>
+        <h2>Форма та огранювання</h2>
+        <p>
+          Оберіть геометричну форму діаманта для візуалізації пропорцій на пальці.
+        </p>
+      </div>
+
+      <!-- Geometric SVG Shapes (Mobile friendly 2x3 grid) -->
+      <div class="shapes-selector-grid">
+        <!-- Round -->
+        <div class="shape-interactive-card active" onclick="setShape(this, 'Round Brilliant', 'Кругле класичне огранювання (57 граней). Максимальне відбиття світла.')">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40"/>
+            <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" stroke-width="0.7"/>
+          </svg>
+          <div class="shape-label">Round</div>
+          <div class="shape-ratio">1:1.00</div>
+        </div>
+
+        <!-- Emerald -->
+        <div class="shape-interactive-card" onclick="setShape(this, 'Emerald Cut', 'Ступінчасте огранювання з ефектом дзеркальної зали («Hall of Mirrors»).')">
+          <svg viewBox="0 0 100 100">
+            <polygon points="26,18 74,18 84,28 84,72 74,82 26,82 16,72 16,28"/>
+          </svg>
+          <div class="shape-label">Emerald</div>
+          <div class="shape-ratio">1:1.45</div>
+        </div>
+
+        <!-- Oval -->
+        <div class="shape-interactive-card" onclick="setShape(this, 'Oval Brilliant', 'Елегантна витягнута форма. Візуально подовжує палець.')">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="50" rx="28" ry="40"/>
+          </svg>
+          <div class="shape-label">Oval</div>
+          <div class="shape-ratio">1:1.35</div>
+        </div>
+
+        <!-- Cushion -->
+        <div class="shape-interactive-card" onclick="setShape(this, 'Cushion Cut', 'Форма «подушки» з м’якими округлими кутами та глибоким сяйвом.')">
+          <svg viewBox="0 0 100 100">
+            <rect x="22" y="22" width="56" height="56" rx="16"/>
+          </svg>
+          <div class="shape-label">Cushion</div>
+          <div class="shape-ratio">1:1.05</div>
+        </div>
+
+        <!-- Pear -->
+        <div class="shape-interactive-card" onclick="setShape(this, 'Pear Cut', 'Огранювання у формі витонченої сльози.')">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,15 C66,42 72,58 72,70 A 22,22 0 0,1 28,70 C28,58 34,42 50,15 Z"/>
+          </svg>
+          <div class="shape-label">Pear</div>
+          <div class="shape-ratio">1:1.55</div>
+        </div>
+
+        <!-- Princess -->
+        <div class="shape-interactive-card" onclick="setShape(this, 'Princess Cut', 'Квадратна форма з гострими кутами та яскравим блиском граней.')">
+          <svg viewBox="0 0 100 100">
+            <rect x="24" y="24" width="52" height="52"/>
+            <line x1="24" y1="24" x2="76" y2="76" stroke-width="0.5"/>
+            <line x1="76" y1="24" x2="24" y2="76" stroke-width="0.5"/>
+          </svg>
+          <div class="shape-label">Princess</div>
+          <div class="shape-ratio">1:1.00</div>
+        </div>
+      </div>
+
+      <!-- 4C Visualizer Hub -->
+      <div class="four-c-hub">
+        <div>
+          <div class="hero-eyebrow" style="justify-content: flex-start;">Шкала розміру</div>
+          <h3 id="concierge-stone-title" style="font-family: var(--font-serif); font-size: clamp(24px, 5vw, 32px); margin-bottom: 6px;">
+            Round Brilliant — <span id="concierge-carat-num" style="color: var(--gold-accent);">1.50</span> ct
+          </h3>
+          <p id="concierge-shape-desc" style="font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+            Кругле класичне огранювання (57 граней). Максимальне відбиття світла.
+          </p>
+
+          <div style="margin-bottom: 6px; display: flex; justify-content: space-between; font-size: 11px; text-transform: uppercase;">
+            <span>Вага: <strong id="carat-slider-label">1.50 ct</strong></span>
+            <span>Діаметр: <strong id="mm-slider-label">7.4 мм</strong></span>
+          </div>
+
+          <input type="range" class="carat-scale-slider" min="0.5" max="3.5" step="0.1" value="1.5" id="concierge-slider" oninput="handleCaratSlider(this.value)">
+
+          <div style="display: flex; justify-content: space-between; font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+            <span>0.5 ct (5.1 мм)</span>
+            <span>1.5 ct (7.4 мм)</span>
+            <span>3.5 ct (9.8 мм)</span>
+          </div>
+
+          <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn-primary-luxury" onclick="openBookingModal('Замовлення підбору каменю на біржі')">Замовити пошук каменя</button>
+            <button class="btn-secondary-luxury" onclick="alert('Зв\'язок з геммологом UDC: @UDC_diamonds')">Консультація геммолога</button>
+          </div>
+        </div>
+
+        <!-- Finger Hand Real-Scale Visualizer -->
+        <div class="finger-preview-container">
+          <div class="finger-silhouette"></div>
+          <div id="concierge-stone-visual" class="live-diamond-faceted" style="width: 74px; height: 74px;"></div>
+          <div style="position: absolute; bottom: 12px; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted);">
+            Масштаб 1:1 на пальці
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       BOOKING MODAL
+       ========================================================================= -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeBookingModal()">✕</button>
+      <div class="hero-eyebrow" style="justify-content: flex-start;">Приватний візит</div>
+      <h3 class="modal-title">Бронювання примірки</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 18px;">
+        Локація: <strong id="modal-selected-location" style="color: var(--gold-accent);">Київ, ТРЦ Ocean Plaza</strong>.  
+        Консультант-геммолог підготує вибрані вироби та сертифікати GIA.
+      </p>
+
+      <input type="text" class="input-luxury" placeholder="Ваше ім'я" required>
+      <input type="tel" class="input-luxury" placeholder="Номер телефону (+380...)" required>
+      <input type="date" class="input-luxury" required>
+
+      <button class="btn-primary-luxury" style="width: 100%; margin-top: 6px;" onclick="confirmBooking()">Підтвердити візит</button>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    function activateScreen(screenId, btn) {
+      document.querySelectorAll('.screen-view').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(screenId);
+      if (target) target.classList.add('active');
+      document.querySelectorAll('.screen-tab').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const tabs = document.querySelectorAll('.screen-tab');
+        if (screenId === 'screen-hero' && tabs[0]) tabs[0].classList.add('active');
+        if (screenId === 'screen-pdp' && tabs[1]) tabs[1].classList.add('active');
+        if (screenId === 'screen-concierge' && tabs[2]) tabs[2].classList.add('active');
+      }
+      try { history.replaceState(null, null, '#' + screenId.replace('screen-', '')); } catch(e) {}
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkInitialHash() {
+      const hash = window.location.hash || window.location.search;
+      if (hash.includes('pdp')) activateScreen('screen-pdp');
+      else if (hash.includes('concierge')) activateScreen('screen-concierge');
+      else if (hash.includes('hero')) activateScreen('screen-hero');
+    }
+    window.addEventListener('DOMContentLoaded', checkInitialHash);
+    window.addEventListener('load', checkInitialHash);
+
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', next);
+      document.getElementById('theme-name').innerText = next === 'dark' ? 'Obsidian / Ivory' : 'Ivory / Obsidian';
+    }
+
+    function switchPdpImage(thumb, src) {
+      document.querySelectorAll('.thumb-card').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      const mainImg = document.getElementById('pdp-active-img');
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+      }, 150);
+    }
+
+    let currentBasePrice = 285000;
+    let currentMetalAdd = 0;
+
+    function selectMetal(btn, label, addPrice, ringImg) {
+      btn.parentElement.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('active-metal-label').innerText = label;
+      currentMetalAdd = addPrice;
+      renderPrice();
+
+      if (ringImg) {
+        const mainImg = document.getElementById('pdp-active-img');
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+          mainImg.src = ringImg;
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    function selectCarat(btn, carat, grade, price, usd) {
+      btn.parentElement.querySelectorAll('.carat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('active-carat-label').innerText = `${carat} (${grade})`;
+      currentBasePrice = price;
+      renderPrice();
+    }
+
+    function selectSize(btn, size) {
+      btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('active-size-label').innerText = size;
+    }
+
+    function renderPrice() {
+      const total = currentBasePrice + currentMetalAdd;
+      const formatted = total.toLocaleString('uk-UA') + ' ₴';
+      document.getElementById('dynamic-price').innerText = formatted;
+      const stickyPrice = document.getElementById('sticky-price-display');
+      if (stickyPrice) stickyPrice.innerText = formatted;
+      const usdEst = Math.round(total / 41.3);
+      document.getElementById('dynamic-usd').innerText = `~ $${usdEst.toLocaleString('en-US')} (ПДВ включено)`;
+    }
+
+    let currentShape = 'Round Brilliant';
+    function setShape(card, shapeName, desc) {
+      document.querySelectorAll('.shape-interactive-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      currentShape = shapeName;
+      document.getElementById('concierge-stone-title').innerHTML = `${shapeName} — <span style="color: var(--gold-accent);">${document.getElementById('concierge-slider').value}</span> ct`;
+      document.getElementById('concierge-shape-desc').innerText = desc;
+    }
+
+    function handleCaratSlider(val) {
+      document.getElementById('concierge-carat-num').innerText = parseFloat(val).toFixed(2);
+      document.getElementById('carat-slider-label').innerText = parseFloat(val).toFixed(2) + ' ct';
+      const mm = (5.1 + (val - 0.5) * 1.55).toFixed(1);
+      document.getElementById('mm-slider-label').innerText = mm + ' мм';
+      const px = Math.round(38 + (val * 24));
+      const stone = document.getElementById('concierge-stone-visual');
+      stone.style.width = px + 'px';
+      stone.style.height = px + 'px';
+    }
+
+    function openBookingModal(location) {
+      document.getElementById('modal-selected-location').innerText = location;
+      document.getElementById('bookingModal').classList.add('active');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.remove('active');
+    }
+
+    function confirmBooking() {
+      alert('Дякуємо! Ваш приватний візит заброньовано. Персональний геммолог UDC зустріне вас у призначений час.');
+      closeBookingModal();
+    }
+  </script>
+</body>
+</html>

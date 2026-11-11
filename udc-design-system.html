@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDC DIAMONDS — Design System & Component Library (Etap 4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-warm-white: #FAF9F6;
+      --color-ivory: #F1EEE8;
+      --color-champagne: #D8CBB8;
+      --color-champagne-light: #EFE9DE;
+      --color-soft-grey: #B8B5AF;
+      --color-border: rgba(216, 203, 184, 0.4);
+      --color-charcoal: #292929;
+      --color-black: #111111;
+      --color-gold-accent: #C5A059;
+      
+      --font-serif-display: 'Cormorant Garamond', Georgia, serif;
+      --font-serif-brand: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #FAF9F6;
+      color: var(--color-charcoal);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      padding: 60px 80px;
+    }
+
+    /* TOP HEADER */
+    .ds-header {
+      border-bottom: 2px solid var(--color-champagne);
+      padding-bottom: 40px;
+      margin-bottom: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .ds-brand-title {
+      font-family: var(--font-serif-brand);
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--color-black);
+    }
+
+    .ds-brand-subtitle {
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-gold-accent);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .ds-meta {
+      text-align: right;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    .ds-meta strong {
+      color: var(--color-black);
+      font-weight: 600;
+    }
+
+    /* SECTION CONTAINERS */
+    .ds-section {
+      margin-bottom: 70px;
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .ds-section-title {
+      font-family: var(--font-serif-brand);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ds-section-title::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 24px;
+      background: var(--color-gold-accent);
+    }
+
+    .ds-section-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 32px;
+      max-width: 800px;
+    }
+
+    /* 1. COLOR PALETTE */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+
+    .color-swatch-card {
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .color-swatch-preview {
+      height: 110px;
+      width: 100%;
+    }
+
+    .color-info {
+      padding: 14px;
+    }
+
+    .color-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin-bottom: 4px;
+    }
+
+    .color-hex {
+      font-family: monospace;
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .color-role {
+      font-size: 10px;
+      color: #888;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 2. TYPOGRAPHY SCALE */
+    .type-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .type-spec-table th,
+    .type-spec-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .type-spec-table th {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 600;
+      background: var(--color-ivory);
+    }
+
+    .type-role-col {
+      width: 180px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
+
+    .type-specs-col {
+      width: 220px;
+      font-family: monospace;
+      font-size: 11px;
+      color: #666;
+    }
+
+    /* 3. BUTTONS & CTAS */
+    .btn-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .btn-item-box {
+      border: 1px solid var(--color-border);
+      padding: 24px;
+      background: var(--color-warm-white);
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .btn-item-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    /* Base Buttons */
+    .btn-solid-primary {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 24px;
+      background: var(--color-black);
+      color: var(--color-warm-white);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid var(--color-black);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-solid-primary:hover {
+      background: #2b2b2b;
+      border-color: #2b2b2b;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .btn-outline-champagne {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 24px;
+      background: transparent;
+      color: var(--color-black);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid var(--color-champagne);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-outline-champagne:hover {
+      background: var(--color-ivory);
+      border-color: var(--color-black);
+    }
+
+    .btn-concierge-vip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--color-ivory);
+      color: var(--color-black);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid var(--color-champagne);
+      border-radius: 2px;
+    }
+
+    .btn-editorial-textlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-black);
+      padding-bottom: 4px;
+    }
+
+    /* 4. CARDS & ATOMS */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    /* Product Card Component */
+    .comp-product-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      padding: 16px;
+      border-radius: 3px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .comp-product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .comp-photo-box {
+      aspect-ratio: 1 / 1;
+      background: var(--color-warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comp-photo-box img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .comp-product-card:hover .comp-photo-box img {
+      transform: scale(1.05);
+    }
+
+    .comp-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--color-black);
+      color: var(--color-warm-white);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+    }
+
+    .comp-sku {
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .comp-card-title {
+      font-family: var(--font-serif-brand);
+      font-size: 15px;
+      color: var(--color-black);
+      margin-bottom: 12px;
+      line-height: 1.4;
+      min-height: 42px;
+    }
+
+    .comp-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(216, 203, 184, 0.3);
+      padding-top: 12px;
+    }
+
+    .comp-price {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
+
+    .comp-action {
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold-accent);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* Floating GIA Spec Tag Component */
+    .comp-spec-tag {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--color-champagne);
+      padding: 12px 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      display: inline-block;
+    }
+
+    .comp-spec-tag span {
+      display: block;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 2px;
+    }
+
+    .comp-spec-tag strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-black);
+      font-weight: 700;
+    }
+
+    /* Privilege Tier Card Component */
+    .comp-privilege-card {
+      background: #181818;
+      border: 1px solid rgba(216, 203, 184, 0.25);
+      padding: 24px;
+      color: #FAF9F6;
+      border-radius: 3px;
+    }
+
+    .comp-privilege-tag {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold-accent);
+      margin-bottom: 8px;
+    }
+
+    .comp-privilege-title {
+      font-family: var(--font-serif-brand);
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #FAF9F6;
+    }
+
+    .comp-privilege-desc {
+      font-size: 11.5px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    /* 5. MOTION & INTERACTION SPEC */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .motion-card {
+      border: 1px solid var(--color-border);
+      background: var(--color-warm-white);
+      padding: 20px;
+      border-radius: 4px;
+    }
+
+    .motion-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin-bottom: 6px;
+    }
+
+    .motion-curve {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--color-gold-accent);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .motion-desc {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DS HEADER -->
+  <header class="ds-header">
+    <div>
+      <div class="ds-brand-title">UDC DIAMONDS</div>
+      <div class="ds-brand-subtitle">Design System & Component Library · Etap 4</div>
+    </div>
+    <div class="ds-meta">
+      <strong>Benchmark:</strong> Graff Haute Joaillerie<br>
+      <strong>Aesthetics:</strong> Quiet Luxury & Timeless Craftsmanship<br>
+      <strong>Target:</strong> Desktop (1440px), Tablet (768px), Mobile (390px)
+    </div>
+  </header>
+
+  <!-- 1. COLOR FOUNDATIONS -->
+  <section class="ds-section">
+    <h2 class="ds-section-title">01. Кольорова палітра та семантичні токени</h2>
+    <p class="ds-section-desc">
+      Стримана палітра високого ювелірного luxury. Відмова від синтетичних градієнтів та агресивних акцентів. Головні фони — теплий білий та айворі; контраст формується через глибокий антрацит та золото 750°.
+    </p>
+
+    <div class="color-grid">
+      <!-- 1 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #FAF9F6; border-bottom: 1px solid #eee;"></div>
+        <div class="color-info">
+          <div class="color-name">Warm White</div>
+          <div class="color-hex">#FAF9F6</div>
+          <div class="color-role">Основний світлий фон</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #F1EEE8;"></div>
+        <div class="color-info">
+          <div class="color-name">Ivory Canvas</div>
+          <div class="color-hex">#F1EEE8</div>
+          <div class="color-role">Hero & картки вітрини</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #D8CBB8;"></div>
+        <div class="color-info">
+          <div class="color-name">Champagne Gold</div>
+          <div class="color-hex">#D8CBB8</div>
+          <div class="color-role">Бордери & делікатні лінії</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #B8B5AF;"></div>
+        <div class="color-info">
+          <div class="color-name">Soft Slate</div>
+          <div class="color-hex">#B8B5AF</div>
+          <div class="color-role">Допоміжні підписи & мікротеги</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #292929;"></div>
+        <div class="color-info">
+          <div class="color-name">Deep Charcoal</div>
+          <div class="color-hex">#292929</div>
+          <div class="color-role">Основний читабельний текст</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="color-swatch-card">
+        <div class="color-swatch-preview" style="background: #111111;"></div>
+        <div class="color-info">
+          <div class="color-name">Timeless Black</div>
+          <div class="color-hex">#111111</div>
+          <div class="color-role">Клубні секції & CTA кнопки</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TYPOGRAPHY SYSTEM -->
+  <section class="ds-section">
+    <h2 class="ds-section-title">02. Типографічна система (Editorial Hierarchy)</h2>
+    <p class="ds-section-desc">
+      Комбінація елегантного серифу (Playfair Display / Cormorant Garamond) для масштабних художніх заголовків та чистого, високочитабельного гротеску (Inter) для навігації, характеристик та цін.
+    </p>
+
+    <table class="type-spec-table">
+      <thead>
+        <tr>
+          <th>Роль елемента</th>
+          <th>Специфікація токена</th>
+          <th>Живий приклад відображення</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="type-role-col">Hero Headline H1</td>
+          <td class="type-specs-col">Playfair Display 56px / 1.15<br>Italic accents, letter-spacing: -0.01em</td>
+          <td><span style="font-family: var(--font-serif-brand); font-size: 38px; color: #111;">Чисте сяйво <em>природних</em> діамантів GIA</span></td>
+        </tr>
+        <tr>
+          <td class="type-role-col">Section Title H2</td>
+          <td class="type-specs-col">Cormorant Garamond 36px / 1.25<br>Regular, letter-spacing: 0.02em</td>
+          <td><span style="font-family: var(--font-serif-display); font-size: 30px; color: #111;">Вибрані категорії ювелірних прикрас</span></td>
+        </tr>
+        <tr>
+          <td class="type-role-col">Brand Crown Logo</td>
+          <td class="type-specs-col">Playfair Display 34px / 700<br>Caps, letter-spacing: 0.14em</td>
+          <td><span style="font-family: var(--font-serif-brand); font-size: 26px; font-weight: 700; letter-spacing: 0.14em; color: #111;">UDC DIAMONDS</span></td>
+        </tr>
+        <tr>
+          <td class="type-role-col">Editorial Eyebrow</td>
+          <td class="type-specs-col">Inter 10.5px / 600<br>Caps, letter-spacing: 0.22em</td>
+          <td><span style="font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-gold-accent);">ФЛАГМАНСЬКА КОЛЕКЦІЯ UDC FINE JEWELRY</span></td>
+        </tr>
+        <tr>
+          <td class="type-role-col">Body Text (Longform)</td>
+          <td class="type-specs-col">Inter 14px / 1.8<br>Light / Regular, #555555</td>
+          <td><span style="font-size: 14px; line-height: 1.8; color: #555;">Понад 25 років Український Діамантовий Центр створює прикраси з прямою поставкою з Ізраїльської алмазної біржі в Рамат-Гані.</span></td>
+        </tr>
+        <tr>
+          <td class="type-role-col">Product Price & Value</td>
+          <td class="type-specs-col">Inter 16px / 700<br>Deep Charcoal #111111</td>
+          <td><span style="font-size: 18px; font-weight: 700; color: #111;">405 903 ₴</span> <span style="font-size: 12px; color: #888; margin-left: 8px;">(Артикул: Ю65416)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3. BUTTONS & INTERACTION STATES -->
+  <section class="ds-section">
+    <h2 class="ds-section-title">03. Компоненти дій (Buttons, Touch Targets & CTAs)</h2>
+    <p class="ds-section-desc">
+      Усі інтерактивні елементи суворо відповідають вимогам Apple HIG: висота тач-таргету не менше 44px на мобільних пристроях, чіткий тактильний зворотний зв'язок та плавні ховери.
+    </p>
+
+    <div class="btn-showcase-grid">
+      <div class="btn-item-box">
+        <div class="btn-item-label">Primary Action (Dark)</div>
+        <button class="btn-solid-primary">Подивитися прикраси</button>
+      </div>
+
+      <div class="btn-item-box">
+        <div class="btn-item-label">Secondary Outline (Champagne)</div>
+        <button class="btn-outline-champagne">Наше виробництво</button>
+      </div>
+
+      <div class="btn-item-box">
+        <div class="btn-item-label">Concierge VIP Tag</div>
+        <div class="btn-concierge-vip">
+          <span style="display: inline-block; width: 6px; height: 6px; background: #C5A059; border-radius: 50%;"></span>
+          <span>Запис у бутик</span>
+        </div>
+      </div>
+
+      <div class="btn-item-box">
+        <div class="btn-item-label">Editorial Link with Arrow</div>
+        <a href="#" class="btn-editorial-textlink">Всі вироби колекції →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CORE CARDS & ATOMS -->
+  <section class="ds-section">
+    <h2 class="ds-section-title">04. Ключові картки та дизайн-модулі</h2>
+    <p class="ds-section-desc">
+      Компоненти каталогу, маркування сертифікації GIA та закритого клубу UDC Privilege Club.
+    </p>
+
+    <div class="components-grid">
+      <!-- Product Card -->
+      <div class="comp-product-card">
+        <div class="comp-photo-box">
+          <span class="comp-tag">Ексклюзив</span>
+          <img src="assets/product-fancy-yellow.jpg" alt="Каблучка Fancy Yellow">
+        </div>
+        <div class="comp-sku">Артикул: Ю65416 · Золото 750°</div>
+        <h3 class="comp-card-title">Каблучка з діамантом Fancy Yellow 1.80 ct</h3>
+        <div class="comp-price-row">
+          <div class="comp-price">405 903 ₴</div>
+          <span class="comp-action">Приміряти</span>
+        </div>
+      </div>
+
+      <!-- Floating GIA Badge -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="comp-spec-tag">
+          <span>Центральний камінь GIA</span>
+          <strong>2.00 CT · D / IF · Triple Ex</strong>
+        </div>
+
+        <div class="comp-spec-tag" style="border-left: 3px solid var(--color-gold-accent);">
+          <span>Міжнародна сертифікація</span>
+          <strong>Лазерний номер на рундисті</strong>
+        </div>
+
+        <div style="border: 1px solid var(--color-border); padding: 18px; background: var(--color-ivory); border-radius: 3px;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 4px;">Стовп довіри</div>
+          <div style="font-family: var(--font-serif-brand); font-size: 16px; font-weight: 600; color: #111; margin-bottom: 4px;">Алмазна біржа</div>
+          <div style="font-size: 11px; color: #666;">Прямі поставки алмазів з Рамат-Гана (Ізраїль) без посередників.</div>
+        </div>
+      </div>
+
+      <!-- Privilege Tier Card -->
+      <div class="comp-privilege-card">
+        <div class="comp-privilege-tag">Рівень VIP Haute</div>
+        <h3 class="comp-privilege-title">Привілей 40% + VIP</h3>
+        <p class="comp-privilege-desc">
+          Прямий доступ до приватних закритих показів рідкісних діамантів до їх виходу в офіційний каталог. Довічний догляд за оправою.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. MOTION & INTERACTION SPEC -->
+  <section class="ds-section" style="margin-bottom: 0;">
+    <h2 class="ds-section-title">05. Специфікація мікроанімацій та фізики переходів</h2>
+    <p class="ds-section-desc">
+      Згідно з вимогами UI Motion & Apple Design, переходи не повинні виглядати шаблонними. Використовуються плавні криві витікання (ease-out springs), що підкреслюють преміальність діамантового блиску.
+    </p>
+
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="motion-title">Консьєрж-шторка (Drawer Slide-over)</div>
+        <div class="motion-curve">cubic-bezier(0.16, 1, 0.3, 1) · 450ms</div>
+        <p class="motion-desc">
+          Фізична пружинна анімація плавного сповільнення при відкритті мобільного меню з одночасним розмиванням фону (blur 24px).
+        </p>
+      </div>
+
+      <div class="motion-card">
+        <div class="motion-title">Зміна слайдів Hero Carousel</div>
+        <div class="motion-curve">ease-in-out · 400ms</div>
+        <p class="motion-desc">
+          Перехресне розчинення (cross-fade) тексту та ювелірного виробу без різких стрибків та зсувів контенту.
+        </p>
+      </div>
+
+      <div class="motion-card">
+        <div class="motion-title">Ховер на картках ювелірних виробів</div>
+        <div class="motion-curve">cubic-bezier(0.2, 0.8, 0.2, 1) · 300ms</div>
+        <p class="motion-desc">
+          Делікатне підняття картки на 4px з м'якою тінзю та плавне мікро-масштабування дорогоцінного каменя (scale 1.05).
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
