@@ -784,6 +784,188 @@
       color: #fff;
     }
 
+    .btn-preview-360 {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(18, 18, 18, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FAF9F6;
+      border: 1px solid rgba(200, 169, 126, 0.5);
+      font-family: var(--font-sans);
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 5px 9px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 4;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-preview-360:hover {
+      background: #000;
+      border-color: var(--color-champagne);
+      color: var(--color-champagne);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    /* 360 Video Modal */
+    .video-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .video-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .video-modal-dialog {
+      background: #FFFFFF;
+      border: 1px solid var(--color-champagne-light);
+      max-width: 520px;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      position: relative;
+      animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-warm-white);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-charcoal);
+      transition: background 0.2s ease;
+      z-index: 10;
+    }
+
+    .video-modal-close:hover {
+      background: var(--color-charcoal);
+      color: #FAF9F6;
+    }
+
+    .video-modal-header {
+      padding: 24px 24px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-ivory-dark);
+    }
+
+    .video-modal-badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-champagne);
+      background: rgba(200, 169, 126, 0.12);
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .video-modal-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--color-charcoal);
+      margin-bottom: 6px;
+    }
+
+    .video-modal-subtitle {
+      font-size: 11px;
+      color: var(--color-muted);
+      line-height: 1.45;
+    }
+
+    .video-modal-body {
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 480px;
+    }
+
+    .video-modal-body video {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .video-modal-footer {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--color-warm-white);
+    }
+
+    .video-modal-price {
+      font-size: 11px;
+      color: var(--color-charcoal);
+    }
+
+    .video-modal-price strong {
+      color: #121212;
+      font-weight: 600;
+    }
+
+    .video-modal-cta {
+      background: var(--color-charcoal);
+      color: #FAF9F6;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s ease;
+    }
+
+    .video-modal-cta:hover {
+      background: #000;
+    }
+
     .card-sku {
       font-size: 10px;
       letter-spacing: 1.2px;
@@ -2511,6 +2693,10 @@
         <a href="https://udcdiamonds.com.ua/produkti/kabluchki/zolota-kabluchka-z-diamantom-fancy-yellow-artikul-yu65416" class="luxury-product-card">
           <div class="card-photo-box">
             <span class="card-tag">Ексклюзив</span>
+            <button type="button" class="btn-preview-360" onclick="event.preventDefault(); open360Modal('assets/video-halo-ring-360.mp4', 'Каблучка Halo з діамантами', 'Кінематографічний відеоогляд 360°, згенерований на основі звичайного фото без потреби у виїзній фотозйомці')">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Огляд 360°
+            </button>
             <img src="assets/product-fancy-yellow.jpg" alt="Каблучка Fancy Yellow">
           </div>
           <div class="card-sku">Артикул: Ю65416 · Золото 750°</div>
@@ -2525,6 +2711,10 @@
         <a href="https://udcdiamonds.com.ua/produkti/kabluchki/zolota-kabluchka-z-diamantami-artikul-f36321" class="luxury-product-card">
           <div class="card-photo-box">
             <span class="card-tag">GIA Certified</span>
+            <button type="button" class="btn-preview-360" onclick="event.preventDefault(); open360Modal('assets/video-solitaire-ring-360.mp4', 'Класичний солітер Pavé Trilogy', 'Кінематографічний відеоогляд 360°, згенерований на основі звичайного фото без потреби у виїзній фотозйомці')">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Огляд 360°
+            </button>
             <img src="assets/product-ring-diamond.jpg" alt="Каблучка з діамантами">
           </div>
           <div class="card-sku">Артикул: Ф36321 · Біле золото 750°</div>
@@ -2849,7 +3039,65 @@
       }, { passive: true });
     }
 
+    // 360 Video Modal Handlers
+    const modal360 = document.getElementById('video360Modal');
+    const modal360Player = document.getElementById('video360Player');
+    const modal360Source = document.getElementById('video360Source');
+    const modal360Title = document.getElementById('videoModalTitle');
+    const modal360Desc = document.getElementById('videoModalDesc');
+
+    function open360Modal(videoSrc, title, desc) {
+      if (!modal360 || !modal360Player) return;
+      modal360Title.textContent = title || 'Огляд 360°';
+      if (desc) modal360Desc.textContent = desc;
+      modal360Source.src = videoSrc;
+      modal360Player.load();
+      modal360.classList.add('active');
+      modal360Player.play().catch(e => console.log('Autoplay blocked:', e));
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close360Modal(e) {
+      if (e && e.target && e.target.closest('.video-modal-dialog') && !e.target.classList.contains('video-modal-close')) {
+        return;
+      }
+      if (modal360) {
+        modal360.classList.remove('active');
+        if (modal360Player) modal360Player.pause();
+      }
+      document.body.style.overflow = '';
+    }
+
+    // Escape key to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal360 && modal360.classList.contains('active')) {
+        close360Modal();
+      }
+    });
+
   </script>
+
+  <!-- 360 VIDEO PREVIEW MODAL -->
+  <div id="video360Modal" class="video-modal-overlay" onclick="close360Modal(event)">
+    <div class="video-modal-dialog" onclick="event.stopPropagation()">
+      <button type="button" class="video-modal-close" onclick="close360Modal()">&times;</button>
+      <div class="video-modal-header">
+        <span class="video-modal-badge">CGI / 3D Відео по фото</span>
+        <h3 id="videoModalTitle" class="video-modal-title">Каблучка з діамантом</h3>
+        <p id="videoModalDesc" class="video-modal-subtitle">Кінематографічний відеоогляд 360°, згенерований на основі звичайного фото без потреби у фотозйомці</p>
+      </div>
+      <div class="video-modal-body">
+        <video id="video360Player" controls autoplay loop playsinline muted>
+          <source id="video360Source" src="" type="video/mp4">
+          Ваш браузер не підтримує відео.
+        </video>
+      </div>
+      <div class="video-modal-footer">
+        <div class="video-modal-price">Вартість послуги: <strong>$25 / одне відео</strong></div>
+        <a href="https://udcdiamonds.com.ua/magazini" class="video-modal-cta">Замовити примірку</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ETAP 3: MOBILE STICKY CONCIERGE BAR -->
   <div class="mobile-sticky-concierge-bar">
